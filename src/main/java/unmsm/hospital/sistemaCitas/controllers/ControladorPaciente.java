@@ -29,11 +29,13 @@ public class ControladorPaciente {
 	@GetMapping(value = "/", produces = "application/json")
 	public List<Paciente> listaPacientes(){
 		return servicioPaciente.list();
+		System.out.println('Chiara');
 	}
 
 	@PostMapping(value = "/new", consumes = "application/json", produces = "application/json")
 	public Paciente save(@RequestBody Paciente paciente){
 		return servicioPaciente.save(paciente);
+
 	}
 
 	@GetMapping(value = "/{id}", produces = "application/json")
