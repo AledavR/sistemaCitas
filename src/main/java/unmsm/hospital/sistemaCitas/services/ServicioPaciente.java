@@ -48,4 +48,15 @@ public class ServicioPaciente {
 		repositorioPaciente.deleteById(id);
 	}
 
+	public Paciente getByNombre(String nombre){
+		Optional<Paciente> pacienteOpcional = repositorioPaciente.findByNombre(nombre);
+		if (pacienteOpcional.isEmpty()) {
+			throw new
+				ResponseStatusException(org. springframework.http.HttpStatus.NOT_FOUND,
+						"Paciente no encontrado");
+		}
+		return pacienteOpcional.get();
+		
+	}
+
 }

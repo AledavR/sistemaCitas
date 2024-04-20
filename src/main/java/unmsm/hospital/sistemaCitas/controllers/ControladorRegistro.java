@@ -35,6 +35,6 @@ public class ControladorRegistro {
 	public String registerPaciente(@ModelAttribute("pacienteForm") Paciente paciente) {
 		System.out.print(paciente.toString());
 		servicioPaciente.save(paciente);
-		return "registro/paciente";
+		return "registro/agradecer";
 	}
 }

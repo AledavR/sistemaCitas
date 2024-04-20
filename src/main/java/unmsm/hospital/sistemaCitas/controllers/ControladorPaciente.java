@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 
@@ -39,13 +41,25 @@ public class ControladorPaciente {
 		return servicioPaciente.get(id);
 	}
 
-	@PutMapping(value="/{id}", consumes = "application/json", produces = "application/json")
+	// Busqueda por nombre usando parametro de url
+	// @GetMapping(value = "/nombre/{nombre}", produces = "application/json")
+	// public Paciente get(@PathVariable String nombre) {
+	// 	return servicioPaciente.getByNombre(nombre);
+	// }
+
+	// Busqueda por nombre usando atributos de url
+	@GetMapping(value = "/nombre", produces = "application/json")
+	public Paciente getByName(@RequestParam String nombre) {
+		return servicioPaciente.getByNombre(nombre);
+	}
+
+	@PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
 	public Paciente update(@PathVariable Long id, @RequestBody Paciente paciente) {
 		return servicioPaciente.update(id, paciente);
 	}
 
-	@DeleteMapping(value="/{id}", produces = "application/json")
-	public void delete(@PathVariable Long id){
+	@DeleteMapping(value = "/{id}", produces = "application/json")
+	public void delete(@PathVariable Long id) {
 		servicioPaciente.delete(id);
 	}
 }
