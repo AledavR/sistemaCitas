@@ -28,6 +28,7 @@ public class ControladorRegistro {
 	@GetMapping("/paciente")
 	public String register(Model model){
 		model.addAttribute("pacienteForm", new Paciente());
+		System.out.println("Alejandro");
 		return "registro/paciente";
 	}
 
