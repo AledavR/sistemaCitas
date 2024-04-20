@@ -15,5 +15,8 @@ public class ControladorInicio {
 		System.out.println("Menu iniciado");
 		return "inicio"; // Aqui se define la ubicacion del template
 	}
-
+hOLA
+HILAF
+EGWSG
+DGSJFGS
 }
