@@ -1,0 +1,6 @@
+.boton{
+    display:inline-block;
+    border: 4px outset green;
+    background-color: lightblue;
+    width:fit-content;
+}
