@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xlmns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" href="paciente.css">
+    <title>Registrar Doctor</title>
+  </head>
+
+  <body>
+    <h1>Ingresar datos del doctor</h1>
+    <form th:action="doctor" th:method="post" th:object="${doctorForm}">
+      <div class="cuadro-form">
+	<div class="elementos-form">
+	  <label for="nombre">Nombre: </label>
+	  <input type="text" th:field="*{nombre}">
+	  <br>
+	  <label for="apellido">Apellido: </label>
+	  <input type="text" th:field="*{apellido}">
+	  <br>
+	  <label for="especialidad">Especialidad: </label>
+	  <input type="text" th:field="*{especialidad}">
+	  <br>
+	</div>
+	<div class="vertical-center">
+	  <button type="submit">Submit</button>
+	</div>
+      </div>
+    </form>
+  </body>
+</html>

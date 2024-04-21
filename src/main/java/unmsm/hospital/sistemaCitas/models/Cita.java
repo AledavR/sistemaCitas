@@ -12,7 +12,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-public class Citas {
+public class Cita {
 	@Id
 	@GeneratedValue
 	private Long id;

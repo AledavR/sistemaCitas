@@ -17,25 +17,14 @@ public class Paciente {
 	private Integer edad;
 
 	@OneToMany(mappedBy = "paciente")
-	private Set<Citas> citas;
+	private Set<Cita> cita;
 
-	public Set<Citas> getCitas() {
-		return citas;
+	public Set<Cita> getCita() {
+		return cita;
 	}
 
-	public void setCitas(Set<Citas> citas) {
-		this.citas = citas;
-	}
-
-	public Paciente() {
-	}
-
-	public Paciente(String nombre,
-					String apellido,
-					Integer edad) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.edad = edad;
+	public void setCita(Set<Cita> cita) {
+		this.cita = cita;
 	}
 
 	public Long getId() {
@@ -70,12 +59,12 @@ public class Paciente {
 		this.edad = edad;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id +
-			", nombre=" + nombre +
-			", apellido=" + apellido +
-			", edad=" + edad + "]";
+				", nombre=" + nombre +
+				", apellido=" + apellido +
+				", edad=" + edad + "]";
 	}
-
 }
