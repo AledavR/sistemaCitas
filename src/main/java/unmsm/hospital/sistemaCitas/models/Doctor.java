@@ -1,8 +1,11 @@
 package unmsm.hospital.sistemaCitas.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Doctor {
@@ -13,6 +16,16 @@ public class Doctor {
 	private String apellido;
 	private String especialidad;
 
+	@OneToMany(mappedBy = "doctor")
+	private Set<Citas> citas;
+	
+
+	public Set<Citas> getCitas() {
+		return citas;
+	}
+	public void setCitas(Set<Citas> citas) {
+		this.citas = citas;
+	}
 	public Long getId() {
 		return id;
 	}
