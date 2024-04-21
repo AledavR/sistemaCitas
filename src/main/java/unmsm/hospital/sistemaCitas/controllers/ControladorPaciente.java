@@ -29,7 +29,6 @@ public class ControladorPaciente {
 	@GetMapping(value = "/", produces = "application/json")
 	public List<Paciente> listaPacientes(){
 		return servicioPaciente.list();
-		System.out.println('Chiara');
 	}
 
 	@PostMapping(value = "/new", consumes = "application/json", produces = "application/json")
