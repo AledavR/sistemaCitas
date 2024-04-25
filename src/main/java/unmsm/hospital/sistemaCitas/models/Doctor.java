@@ -1,8 +1,11 @@
 package unmsm.hospital.sistemaCitas.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Doctor {
@@ -13,6 +16,26 @@ public class Doctor {
 	private String apellido;
 	private String especialidad;
 
+	@OneToMany(mappedBy = "doctor")
+	private Set<Cita> cita;
+	
+	public Doctor() {
+	}
+
+	public Doctor(String nombre,
+			String apellido,
+			String especialidad) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.especialidad = especialidad;
+	}
+
+	public Set<Cita> getCita() {
+		return cita;
+	}
+	public void setCita(Set<Cita> cita) {
+		this.cita = cita;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -36,6 +59,14 @@ public class Doctor {
 	}
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor [id=" + id +
+				", nombre=" + nombre +
+				", apellido=" + apellido +
+				", especialidad=" + especialidad + "]";
 	}
 }
 

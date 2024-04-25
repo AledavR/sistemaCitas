@@ -1,8 +1,11 @@
 package unmsm.hospital.sistemaCitas.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Paciente {
@@ -13,15 +16,15 @@ public class Paciente {
 	private String apellido;
 	private Integer edad;
 
-	public Paciente() {
+	@OneToMany(mappedBy = "paciente")
+	private Set<Cita> cita;
+
+	public Set<Cita> getCita() {
+		return cita;
 	}
 
-	public Paciente(String nombre,
-					String apellido,
-					Integer edad) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.edad = edad;
+	public void setCita(Set<Cita> cita) {
+		this.cita = cita;
 	}
 
 	public Long getId() {
@@ -56,12 +59,12 @@ public class Paciente {
 		this.edad = edad;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id +
-			", nombre=" + nombre +
-			", apellido=" + apellido +
-			", edad=" + edad + "]";
+				", nombre=" + nombre +
+				", apellido=" + apellido +
+				", edad=" + edad + "]";
 	}
-
 }

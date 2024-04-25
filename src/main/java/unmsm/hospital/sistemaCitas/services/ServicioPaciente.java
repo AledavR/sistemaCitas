@@ -21,7 +21,15 @@ public class ServicioPaciente {
 	public Paciente save(Paciente paciente){
 		return repositorioPaciente.save(paciente);
 	}
-
+	
+	/**
+	 *
+	 * Permite conseguir el nombre de un paciente a traves del id.
+	 *
+	 * @param id ID del paciente
+	 * @return El objeto paciente con ID elegido
+	 *
+	 */
 	public Paciente get(Long id){
 		Optional<Paciente> pacienteOpcional = repositorioPaciente.findById(id);
 		if (pacienteOpcional.isEmpty()) {
