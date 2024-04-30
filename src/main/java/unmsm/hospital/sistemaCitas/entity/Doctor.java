@@ -40,5 +40,11 @@ public class Doctor {
 			   {@JoinColumn(name = "specialty_id", referencedColumnName = "id")})
 	private List<Specialty> specialties = new ArrayList<>();
 
-	
+	@OneToMany(mappedBy = "doctor")
+	private List<MedicalService> medicalServices;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
+
 }

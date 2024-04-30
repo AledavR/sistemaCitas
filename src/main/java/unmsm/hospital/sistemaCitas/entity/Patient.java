@@ -1,5 +1,7 @@
 package unmsm.hospital.sistemaCitas.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,5 +48,10 @@ public class Patient {
 			   {@JoinColumn(name = "history_id", referencedColumnName = "id")})
 	private History history;
 
-	
+	@OneToMany(mappedBy = "patient")
+	private List<MedicalService> medicalServices;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 }
