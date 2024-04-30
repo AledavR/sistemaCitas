@@ -19,27 +19,27 @@ public class MedicalService {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
+	@Column(nullable = false)
 	private String details;
 
-	@Column
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date service_date;
 
 	@ManyToOne
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patient_id", nullable = false)
 	private Patient patient;
 
 	@ManyToOne
-	@JoinColumn(name = "doctor_id")
+	@JoinColumn(name = "doctor_id", nullable = false)
 	private Doctor doctor;
 
 	@ManyToOne
-	@JoinColumn(name = "type_id", referencedColumnName = "id")
+	@JoinColumn(name = "type_id", referencedColumnName = "id",nullable = false)
 	private MedicalServiceType medicalServiceType;
 
 	@ManyToOne
-	@JoinColumn(name = "specialty_id", referencedColumnName = "id")
+	@JoinColumn(name = "specialty_id", referencedColumnName = "id", nullable = false)
 	private Specialty specialty;
 
 	@OneToOne(cascade = CascadeType.ALL)
