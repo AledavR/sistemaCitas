@@ -8,6 +8,16 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+/**
+ *
+ * Entidad basica de paciente. Posee los atributos
+ * names, lastnames y age
+ * <p>
+ * Presenta relaciones con las entidades PatientDirectory,
+ * History, MedicalService y User 
+ * @author Alejandro Ramirez
+ *
+ */
 @Entity
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 @Table(name = "patients")
