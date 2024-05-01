@@ -17,21 +17,40 @@ public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	/**
+	 *
+	 * Esta variable guarda los nombres del doctor
+	 *
+	 */
 	@Column(nullable = false)
 	private String names;
 
+	/**
+	 *
+	 * Esta variable guarda los apellidos del doctor
+	 *
+	 */
 	@Column(nullable = false)
-	private String last_name;
+	private String lastnames;
 
-	// Definicion de mapeo uno a uno similar a lo visto en la entidad paciente
+	/**
+	 *
+	 * Definicion de mapeo uno a uno similar a lo visto en las entidades
+	 * paciente-directorioPaciente. Llaves primarias compartidas
+	 *
+	 */
 	@OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private DoctorDirectory doctorDirectory;
-
-	// Definicion de muchos a muchos debido a que un doctor puede tener mas de una
-	// especialidad y una especialidad puede ser ejercida por multiples doctores.
-	// Se usa una tabla extra como en el caso de usuario-rol
+	
+	/**
+	 *
+	 * Definicion de muchos a muchos debido a que un doctor puede tener mas
+	 * de una especialidad y una especialidad puede ser ejercida por
+	 * multiples doctores. Se usa una tabla extra como en el caso de usuario-rol
+	 *
+	 */
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "doctor_specialties",
 			   joinColumns =
