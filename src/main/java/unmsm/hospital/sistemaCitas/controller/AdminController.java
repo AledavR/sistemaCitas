@@ -32,32 +32,34 @@ public class AdminController {
 	@GetMapping("/admin/user")
 	public String giveAdminRights(Model model){
 		String userEmail = new String();
+		String role = new String();
 		List<Role> roles = userService.listRoles();
 		model.addAttribute("email", userEmail);
 		model.addAttribute("roles", roles);
+		model.addAttribute("role", role);
 		return "admin/user";
 	}
 
 	@PostMapping("/admin/user/save")
 	public String giveAdminRightsSave(@ModelAttribute("email") String email,
-									  @ModelAttribute("roles") String role_name,
-									  BindingResult result,
+									  BindingResult resultUser,
+									  @ModelAttribute("role") String role,
+									  BindingResult resultRole,
 									  Model model){
 		User adminUser = userService.findUserByEmail(email);
 		
         if(adminUser == null && adminUser.getEmail() == null && !adminUser.getEmail().isEmpty()){
-            result.rejectValue("email", null,
+            resultUser.rejectValue("email", null,
                     "No hay un usuario con ese correo");
         }
 		
-        if(result.hasErrors()){
+        if(resultUser.hasErrors()){
             model.addAttribute("user", email);
             return "/admin/user";
         }
 
 		// userService.makeUserAdmin(email);
-		userService.changeUserRoleByEmail(email,role_name);
+		userService.changeUserRoleByEmail(email,role);
         return "redirect:/admin/user?success";
 	}
-
 }

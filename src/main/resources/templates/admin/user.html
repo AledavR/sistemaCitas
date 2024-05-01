@@ -59,10 +59,13 @@
 		  <label class="control-label">Correo</label>
 
 		  <select 
-		    class="form-control" th:field="${roles}">
-		    <option th:each="a: ${roles}"
-			    th:value="${a.name}"
-			    th:text="${a.name}"></option>
+		    id="role"
+		    name="role"
+		    selected="selected"
+		    class="form-control">
+		    <option th:each="role: ${roles}"
+			    th:value="${role.name}"
+			    th:text="${role.name}"></option>
 		  </select>  
 		</div>
 

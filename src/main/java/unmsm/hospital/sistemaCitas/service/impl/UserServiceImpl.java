@@ -108,9 +108,9 @@ public class UserServiceImpl implements UserService {
 		return roleRepository.save(role);
 	}
 
-	// private Role checkRoleAdminExist(){
-	// 	Role role = new Role();
-	// 	role.setName("ROLE_ADMIN");
-	// 	return roleRepository.save(role);
-	// }
+	private Role checkRoleAdminExist(){
+		Role role = new Role();
+		role.setName("ROLE_ADMIN");
+		return roleRepository.save(role);
+	}
 }
