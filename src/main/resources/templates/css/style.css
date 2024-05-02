@@ -1012,10 +1012,10 @@ input.Enter_text::placeholder {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color:#ffffff;
     border-radius:0px;
     box-shadow: 1px 1px 10px 5px #80808070;
@@ -1028,14 +1028,15 @@ input.Enter_text::placeholder {
     margin-left: auto;
     margin-right: auto;
     border-radius: 0%;
-    padding: 70px;
+    padding: 0px;
 }
 
 .articulo-img{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width:40px;
+    width:100px;
+    background-position: top;
 }
 
 
@@ -1043,17 +1044,18 @@ input.Enter_text::placeholder {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size:20px;
+    font-size:14px;
     font-style: normal;
-    color:rgb(238, 173, 68);
+    color:rgba(240, 152, 11, 0.876);
+    line-height: 16px;
 }
 
 .articulo-descripcion{
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
-    font-size:16px;
-    line-height: 30px;
+    font-size:12px;
+    line-height: 16px;
 }
 
 /*** TABLETA O LAPTOP ***/
@@ -1092,12 +1094,13 @@ input.Enter_text::placeholder {
     width: 100%;
     float: left;
     background-image: url(../images/img-morad.png);
-    background-size: 100%;
+    background-size: 80%;
+    background-position: center;
     background-repeat: no-repeat;
     padding-bottom: 150px;
 }
 .health_taital-2{
 color: #ffffff;
-
+font-size: 40px;
 
 }
