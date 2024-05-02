@@ -977,3 +977,127 @@ input.Enter_text::placeholder {
 .margin_90 {
     margin: 90px 0px;
 }
+
+
+
+
+/**Rocio**/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.col-4{
+    width: 33%;
+}
+
+.articulo{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color:#ffffff;
+    border-radius:0px;
+    box-shadow: 1px 1px 10px 5px #80808070;
+    margin-bottom: 20px;
+}
+
+.articulo-circulo-img{
+    background-color: #e3e3e3;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    padding: 70px;
+}
+
+.articulo-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:40px;
+}
+
+
+.articulo-titulo{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size:20px;
+    font-style: normal;
+    color:rgb(238, 173, 68);
+}
+
+.articulo-descripcion{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size:16px;
+    line-height: 30px;
+}
+
+/*** TABLETA O LAPTOP ***/
+@media(max-width:900px){
+    
+    .container{
+        width: 100%;
+    }
+    .col-4{
+        width: 45%;
+        margin-right: 20px;
+        margin-left: 20px;
+       
+    }
+}
+@media(max-width:768px){
+    .col-4{
+        width: 40%;
+    }
+}
+@media(max-width:500px){
+    .col-4{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto; 
+    }
+}
+.imagenes{
+        opacity: 1;
+}
+.health_taital{
+    color: rgb(88, 19, 153);
+}
+
+.contact_section-3 {
+    width: 100%;
+    float: left;
+    background-image: url(../images/img-morad.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 150px;
+}
+.health_taital-2{
+color: #ffffff;
+
+
+}
