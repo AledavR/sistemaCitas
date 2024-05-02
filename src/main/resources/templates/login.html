@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Registration and Login System</title>
+    <title>Iniciar Sesion</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -41,10 +41,10 @@
     <div class="row col-md-8 offset-md-2">
       <h1 class="contact_taital">Clínica Leben</h1>
       <div th:if="${param.error}">
-	<div class="alert alert-danger">Invalid Email or Password</div>
+	<div class="alert alert-danger">Correo o contraseña incorrectos</div>
       </div>
       <div th:if="${param.logout}">
-	<div class="alert alert-success"> You have been logged out.</div>
+	<div class="alert alert-success">Ha cerrado su sesion</div>
       </div>
       <div class="news_section_2">
 	<div class="row">
@@ -66,7 +66,7 @@
 
 	  <div class="col-md-6">
             <div class="contact_box">
-              <h1 class="book_text">Login Form</h1>
+              <h1 class="book_text">Iniciar Sesion</h1>
 	    <form
 	      method="post"
 	      role="form"
@@ -74,29 +74,29 @@
 	      class="form-horizontal"
 	      >
 	      <div class="form-group mb-3">
-		<label class="form-label"> Email</label>
+		<label class="form-label">Correo</label>
 		<input
 		  type="text"
 		  id="username"
 		  name="username"
 		  class="form-control"
-		  placeholder="Enter email address"
+		  placeholder="Ingrese su correo"
 		  />
 	      </div>
 
 	      <div class="form-group mb-3">
-		<label class="form-label"> Password</label>
+		<label class="form-label">Contraseña</label>
 		<input
 		  type="password"
 		  id="password"
 		  name="password"
 		  class="form-control"
-		  placeholder="Enter password"
+		  placeholder="Ingrese su contraseña"
 		  />
 	      </div>
 	      <div class="form-group">
 		<button type="submit" class="send_bt">Ingresar</button>
-		<span> Not registered ? <a th:href="@{/register}">Register/Signup here</a> </span>
+		<span> ¿No esta registrado? <a th:href="@{/register}">Registrarse</a> </span>
 	      </div>
 	    </form>
 	  </div>
