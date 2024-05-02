@@ -4,7 +4,9 @@ import jakarta.validation.Valid;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Role;
 import unmsm.hospital.sistemaCitas.service.UserService;
-
+import unmsm.hospital.sistemaCitas.entity.Specialty;
+import unmsm.hospital.sistemaCitas.service.SpecialtyService;
+import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,12 @@ import java.util.List;
 public class AdminController {
 
 	private UserService userService;
+	private SpecialtyService specialtyService;
 
-	public AdminController(UserService userService){
+	public AdminController(UserService userService,
+						   SpecialtyService specialtyService){
 		this.userService = userService;
+		this.specialtyService = specialtyService;
 	}
 
 	@GetMapping("/admin")
@@ -42,24 +47,57 @@ public class AdminController {
 
 	@PostMapping("/admin/user/save")
 	public String giveAdminRightsSave(@ModelAttribute("email") String email,
-									  BindingResult resultUser,
 									  @ModelAttribute("role") String role,
-									  BindingResult resultRole,
+									  BindingResult result,
 									  Model model){
 		User adminUser = userService.findUserByEmail(email);
 		
-        if(adminUser == null && adminUser.getEmail() == null && !adminUser.getEmail().isEmpty()){
-            resultUser.rejectValue("email", null,
-                    "No hay un usuario con ese correo");
-        }
+        if(adminUser == null &&
+		   adminUser.getEmail() == null &&
+		   !adminUser.getEmail().isEmpty())
+			{
+				result.rejectValue("email", null,
+								   "No hay un usuario con ese correo");
+			}
 		
-        if(resultUser.hasErrors()){
-            model.addAttribute("user", email);
-            return "/admin/user";
-        }
+		if(result.hasErrors()){
+			model.addAttribute("user", email);
+			return "/admin/user";
+		}
 
 		// userService.makeUserAdmin(email);
 		userService.changeUserRoleByEmail(email,role);
         return "redirect:/admin/user?success";
 	}
+
+	@GetMapping("/admin/specialty")
+	public String showSpecialtyForm(Model model){
+		SpecialtyDto specialty = new SpecialtyDto();
+		model.addAttribute("specialty", specialty);
+		return "admin/specialty";
+	}
+
+	@PostMapping("/admin/specialty/save")
+	public String saveSpecialty(@Valid @ModelAttribute("specialty") SpecialtyDto specialtyDto,
+								BindingResult result,
+								Model model){
+		Specialty existingSpecialty = specialtyService
+			.findSpecialtyByName(specialtyDto.getName());
+		
+		if(existingSpecialty != null &&
+		   existingSpecialty.getName() != null &&
+		   !existingSpecialty.getName().isEmpty()){
+			result.rejectValue("name", null,
+							   "Esa especialidad ya esta registrada");
+		}
+
+		if(result.hasErrors()){
+			model.addAttribute("specialty",specialtyDto);
+			return "/admin/specialty";
+		}
+
+		specialtyService.saveSpecialty(specialtyDto);
+		return "redirect:/admin/specialty?success";
+	}
+
 }

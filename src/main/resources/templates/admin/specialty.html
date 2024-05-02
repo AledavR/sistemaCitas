@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       >
@@ -19,9 +20,7 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	    <li class="nav-item">
-	      <a class="nav-link active" aria-current="page" th:href="@{/register}">Administrar permisos de usuario</a>
-	    </li>
+	    <li class="nav-item">Agregar especialidad medica</li>
 	  </ul>
 	</div>
       </div>
@@ -32,41 +31,31 @@
 	<div class="col-md-6 offset-md-3">
 
           <div th:if="${param.error}">
-            <div class="alert alert-danger">No existe usuario con este correo.</div>
+            <div class="alert alert-danger">No se agrego la especialidad.</div>
           </div>
 
           <div class="card">
             <div class="card-header">
-	      <h2 class="text-center">Administrar permisos de usuario</h2>
+	      <h2 class="text-center">Agregar especialidad medica</h2>
 	    </div>
 	    <div class="card-body">
 	      <form
 		method="post"
 		role="form"
-		th:action="@{/admin/user/save}"
+		th:action="@{/admin/specialty/save}"
+		th:object="${specialty}"
 		class="form-horizontal"
 		>
 		<div class="form-group mb-3">
-		  <label class="control-label">Correo</label>
+		  <label class="control-label">Nombre de la especialidad</label>
 		  <input
 		    type="text"
-		    th:value="${email}"
-		    id="email"
-		    name="email"
+		    id="specialty"
+		    name="specialty"
+		    th:field="*{name}"
 		    class="form-control"
-		    placeholder="Ingrese el correo del usuario"
+		    placeholder="Ingrese el nombre de la especialidad"
 		    />
-		  <label class="control-label">Rol</label>
-
-		  <select 
-		    id="role"
-		    name="role"
-		    selected="selected"
-		    class="form-control">
-		    <option th:each="role: ${roles}"
-			    th:value="${role.name}"
-			    th:text="${role.name}"></option>
-		  </select>  
 		</div>
 
                 <div class="form-group mb-3">
