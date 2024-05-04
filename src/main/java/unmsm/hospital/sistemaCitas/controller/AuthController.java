@@ -43,10 +43,13 @@ public class AuthController {
                                Model model){
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
-        if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
-            result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
-        }
+        if(existingUser != null &&
+		   existingUser.getEmail() != null &&
+		   !existingUser.getEmail().isEmpty())
+			{
+				result.rejectValue("email", null,
+								   "Ya hay una cuenta registrada con ese correo");
+			}
 
         if(result.hasErrors()){
             model.addAttribute("user", userDto);
@@ -57,7 +60,7 @@ public class AuthController {
         return "redirect:/register?success";
     }
 
-     // handler method to handle list of users
+	// handler method to handle list of users
     @GetMapping("/users")
     public String users(Model model){
         List<UserDto> users = userService.findAllUsers();
@@ -65,7 +68,7 @@ public class AuthController {
         return "users";
     }
 
-      // handler method to handle login request
+	// handler method to handle login request
     @GetMapping("/login")
     public String login(){
         return "login";

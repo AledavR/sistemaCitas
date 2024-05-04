@@ -33,6 +33,7 @@ public class SpringSecurity {
                                 .requestMatchers("/images/**").permitAll()
                                 .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
@@ -50,8 +51,7 @@ public class SpringSecurity {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+			.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder());
     }
-
 }
