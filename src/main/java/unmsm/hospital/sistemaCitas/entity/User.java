@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 @Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,8 +30,15 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(
 			name="users_roles",
-			joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-			inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+			joinColumns={@JoinColumn(name="user_id", referencedColumnName="ID")},
+			inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="ID")})
 	private List<Role> roles = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<Patient> patients = new ArrayList<>();
+
+	@OneToOne(mappedBy = "user")
+	private Doctor doctor;
+
 }
 
