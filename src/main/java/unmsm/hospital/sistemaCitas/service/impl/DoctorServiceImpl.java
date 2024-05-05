@@ -28,6 +28,7 @@ public class DoctorServiceImpl implements DoctorService {
 		(DoctorRepository doctorRepository,
 		 DoctorDirectoryRepository doctorDirectoryRepository,
 		 SpecialtyRepository specialtyRepository) {
+
 		this.doctorRepository = doctorRepository;
 		this.doctorDirectoryRepository = doctorDirectoryRepository;
 		this.specialtyRepository = specialtyRepository;

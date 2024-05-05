@@ -62,18 +62,6 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-	// @Override
-	// public void makeUserAdmin(String email){
-	// 	User user = userRepository.findByEmail(email);
-	// 	Role role = roleRepository.findByName("ROLE_ADMIN");
-    //     if(role == null){
-    //         role = checkRoleAdminExist();
-    //     }
-	// 	List<Role> roles = new ArrayList<>(List.of(role));
-    //     user.setRoles(roles);
-    //     userRepository.save(user);
-	// }
-
 	@Override
 	public void changeUserRoleByEmail(String email, String role_name){
 		User user = userRepository.findByEmail(email);
