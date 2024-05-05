@@ -34,6 +34,10 @@ public class Doctor {
 	@Column(nullable = false)
 	private String lastnames;
 
+        
+        @Column(nullable = false)
+	private String specialty;
+
 	/**
 	 *
 	 * Definicion de mapeo uno a uno similar a lo visto en las entidades
@@ -65,5 +69,6 @@ public class Doctor {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
+        
+    }
 
-}
