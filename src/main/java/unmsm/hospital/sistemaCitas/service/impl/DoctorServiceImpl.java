@@ -7,6 +7,7 @@ import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
+import unmsm.hospital.sistemaCitas.repository.DoctorDirectoryRepository;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
 import unmsm.hospital.sistemaCitas.service.UserService;
 
@@ -15,10 +16,14 @@ public class DoctorServiceImpl implements DoctorService {
 
     // Asegúrate de inyectar el UserService correctamente
     private final DoctorRepository doctorRepository;
+    private final DoctorDirectoryRepository doctorDirectoryRepository;
 
     @Autowired
-    public DoctorServiceImpl(DoctorRepository doctorRepository) {
-        this.doctorRepository = doctorRepository;
+    public DoctorServiceImpl
+		(DoctorRepository doctorRepository,
+		 DRepositoryoctorDirectoryRepository doctorDirectoryRepository) {
+		this.doctorRepository = doctorRepository;
+		this.doctorDirectoryRepository = doctorDirectoryRepository;
 
     }
 
@@ -36,8 +41,9 @@ public class DoctorServiceImpl implements DoctorService {
 
         //ASOCIACION ENTRE DOCTORDIRECTORY Y DOCTOR
         doctorDirectory.setDoctor(doctor);
-        doctor.setDoctorDirectory(doctorDirectory);
+        // doctor.setDoctorDirectory(doctorDirectory);
         
         doctorRepository.save(doctor);
+		doctorDirectoryRepository.save(doctorDirectory);
     }
 }

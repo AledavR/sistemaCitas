@@ -35,7 +35,7 @@ public class Doctor {
 	private String lastnames;
 
         
-        @Column(nullable = false)
+    @Column(nullable = false)
 	private String specialty;
 
 	/**
