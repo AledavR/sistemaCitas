@@ -52,16 +52,16 @@ public class AdminController {
 
     @PostMapping("/admin/user/save")
     public String giveAdminRightsSave(@ModelAttribute("email") String email,
-            @ModelAttribute("role") String role,
-            BindingResult result,
-            Model model) {
+									  @ModelAttribute("role") String role,
+									  BindingResult result,
+									  Model model) {
         User adminUser = userService.findUserByEmail(email);
 
         if (adminUser == null
-                && adminUser.getEmail() == null
-                && !adminUser.getEmail().isEmpty()) {
+			&& adminUser.getEmail() == null
+			&& !adminUser.getEmail().isEmpty()) {
             result.rejectValue("email", null,
-                    "No hay un usuario con ese correo");
+							   "No hay un usuario con ese correo");
         }
 
         if (result.hasErrors()) {
@@ -83,16 +83,16 @@ public class AdminController {
 
     @PostMapping("/admin/specialty/save")
     public String saveSpecialty(@Valid @ModelAttribute("specialty") SpecialtyDto specialtyDto,
-            BindingResult result,
-            Model model) {
+								BindingResult result,
+								Model model) {
         Specialty existingSpecialty = specialtyService
-                .findSpecialtyByName(specialtyDto.getName());
+			.findSpecialtyByName(specialtyDto.getName());
 
         if (existingSpecialty != null
-                && existingSpecialty.getName() != null
-                && !existingSpecialty.getName().isEmpty()) {
+			&& existingSpecialty.getName() != null
+			&& !existingSpecialty.getName().isEmpty()) {
             result.rejectValue("name", null,
-                    "Esa especialidad ya esta registrada");
+							   "Esa especialidad ya esta registrada");
         }
 
         if (result.hasErrors()) {
@@ -106,18 +106,22 @@ public class AdminController {
 
     @GetMapping("/admin/doctor")
     public String showAddDoctorForm(Model model) {
-        model.addAttribute("doctor", new DoctorDto());
-        return "admin/doctor";
-    }
+		List<Specialty> specialties = specialtyService.listSpecialties();
+		model.addAttribute("doctor", new DoctorDto());
+		model.addAttribute("specialties", specialties);
+		return "admin/doctor";
+	}
 
-    @PostMapping("/admin/doctor/save")
-    public String saveDoctor(@Valid @ModelAttribute("doctor") DoctorDto doctorDto, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            // Falta agregar errores de validación?
-            return "admin/doctor";
-        }
-        doctorService.saveDoctor(doctorDto);
-        return "redirect:/admin/doctor?success";
-    }
+	@PostMapping("/admin/doctor/save")
+	public String saveDoctor(@Valid @ModelAttribute("doctor") DoctorDto doctorDto,
+							 BindingResult result,
+							 Model model) {
+		if (result.hasErrors()) {
+			// Falta agregar errores de validación?
+			return "admin/doctor";
+		}
+		doctorService.saveDoctor(doctorDto);
+		return "redirect:/admin/doctor?success";
+	}
 
 }

@@ -1,6 +1,9 @@
 package unmsm.hospital.sistemaCitas.entity;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,9 +24,9 @@ public class Specialty {
 	private String name;
 
 	@ManyToMany(mappedBy = "specialties")
-	private List<Doctor> doctors;
+	private List<Doctor> doctors = new ArrayList<>();
 
 	@OneToMany(mappedBy = "specialty")
-	private List<MedicalService> medicalServices;
+	private Set<MedicalService> medicalServices = new HashSet<>();
 	
 }

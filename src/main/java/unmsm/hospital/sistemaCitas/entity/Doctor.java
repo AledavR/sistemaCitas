@@ -1,5 +1,7 @@
 package unmsm.hospital.sistemaCitas.entity;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -35,9 +37,6 @@ public class Doctor {
 	private String lastnames;
 
         
-    @Column(nullable = false)
-	private String specialty;
-
 	/**
 	 *
 	 * Definicion de mapeo uno a uno similar a lo visto en las entidades
@@ -64,7 +63,7 @@ public class Doctor {
 	private List<Specialty> specialties = new ArrayList<>();
 
 	@OneToMany(mappedBy = "doctor")
-	private List<MedicalService> medicalServices;
+	private Set<MedicalService> medicalServices = new HashSet<>();
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")

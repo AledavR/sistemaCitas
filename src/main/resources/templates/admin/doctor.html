@@ -35,35 +35,67 @@
                 <div class="card-header">
                     <h2 class="text-center">Agregar Doctor</h2>
                 </div>
-                <div class="card-body">
-                    <form method="post" role="form" th:action="@{/admin/doctor/save}" th:object="${doctor}" class="form-horizontal">
-                        <div class="form-group mb-3">
-                            <label class="control-label">Nombres del Doctor</label>
-                            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" placeholder="Ingrese los nombres del doctor" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="control-label">Apellidos del Doctor</label>
-                            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" placeholder="Ingrese los apellidos del doctor" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="control-label">Dirección del doctor</label>
-                            <input type="text" id="userId" name="address" th:field="*{address}" class="form-control" placeholder="Ingrese la dirección del doctor" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="control-label">Telefono del doctor</label>
-                            <input type="text" id="userId" name="phone" th:field="*{phone}" class="form-control" placeholder="Ingrese el telefono del doctor" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="control-label">Especialidad del doctor</label>
-                            <input type="text" id="userId" name="specialty" th:field="*{specialty}" class="form-control" placeholder="Ingrese la especialidad del doctor" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+		<div class="card-body">
+		  <form method="post"
+			role="form"
+			th:action="@{/admin/doctor/save}"
+			th:object="${doctor}"
+			class="form-horizontal">
+		    <div class="form-group mb-3">
+		      <label class="control-label">Nombres del Doctor</label>
+		      <input type="text"
+			     id="firstName" 
+			     name="firstName"
+			     th:field="*{firstName}" 
+			     class="form-control"
+			     placeholder="Ingrese los nombres del doctor" />
+		    </div>
+		    <div class="form-group mb-3">
+		      <label class="control-label">Apellidos del Doctor</label>
+		      <input type="text"
+			     id="lastName" 
+			     name="lastName"
+			     th:field="*{lastName}" 
+			     class="form-control"
+			     placeholder="Ingrese los apellidos del doctor" />
+		    </div>
+		    <div class="form-group mb-3">
+		      <label class="control-label">Dirección del doctor</label>
+		      <input type="text"
+			     id="address" 
+			     name="address"
+			     th:field="*{address}" 
+			     class="form-control"
+			     placeholder="Ingrese la dirección del doctor" />
+		    </div>
+		    <div class="form-group mb-3">
+		      <label class="control-label">Telefono del doctor</label>
+		      <input type="text"
+			     id="userId" 
+			     name="phone"
+			     th:field="*{phone}" 
+			     class="form-control"
+			     placeholder="Ingrese el telefono del doctor" />
+		    </div>
+		    <div class="form-group mb-3">
+		      <label class="control-label">Especialidad del doctor</label>
+		      <select
+			id="specialty"
+			name="specialty"
+			selectec="selected"
+			class="form-control">
+			<option th:each="specialty: ${specialties}"
+				th:value="${specialty.name}"
+				th:text="${specialty.name}"> </option>
+		      </select>
+		    </div>
+		    <div class="form-group mb-3">
+		      <button type="submit" class="btn btn-primary">Enviar</button>
+		    </div>
+		  </form>
+		</div>
+	    </div>
+	</div>
     </div>
 </div>
 </body>
