@@ -27,24 +27,26 @@ public class SpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-			.authorizeHttpRequests((authorize) ->
-								   authorize.requestMatchers("/register/**").permitAll()
-								   .requestMatchers("/index").permitAll()
-								   .requestMatchers("/users").hasRole("ADMIN")
-								   .requestMatchers("/admin/**").hasRole("ADMIN")
-								   ).formLogin(
-											   form -> form
-											   .loginPage("/login")
-											   .loginProcessingUrl("/login")
-											   .defaultSuccessUrl("/users")
-											   .permitAll()
-											   ).logout(
-														logout -> logout
-														.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-														.permitAll()
-														);
-		return http.build();
-	}
+                .authorizeHttpRequests((authorize) ->
+                        authorize.requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/index").permitAll()
+                                .requestMatchers("/images/**").permitAll()
+                                .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                ).formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/users")
+                                .permitAll()
+                ).logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .permitAll()
+                );
+        return http.build();
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
