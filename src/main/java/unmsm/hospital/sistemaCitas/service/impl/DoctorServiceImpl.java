@@ -18,10 +18,10 @@ import java.util.ArrayList;
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-    // Asegúrate de inyectar el UserService correctamente
-    private final DoctorRepository doctorRepository;
-    private final DoctorDirectoryRepository doctorDirectoryRepository;
-    private final SpecialtyRepository specialtyRepository;
+	// Asegúrate de inyectar el UserService correctamente
+	private final DoctorRepository doctorRepository;
+	private final DoctorDirectoryRepository doctorDirectoryRepository;
+	private final SpecialtyRepository specialtyRepository;
 
     @Autowired
     public DoctorServiceImpl
@@ -56,5 +56,24 @@ public class DoctorServiceImpl implements DoctorService {
 		
 		doctorRepository.save(doctor);
 		doctorDirectoryRepository.save(doctorDirectory);
-	}
+    }
+
+    @Override
+    public void updateDoctor(Long doctor_id, Long specialty_id) {
+
+        Doctor existing_doctor = doctorRepository.getById(doctor_id);
+		Specialty new_specialty = specialtyRepository.getById(specialty_id);
+
+		ArrayList<Specialty> specialties = new ArrayList<Specialty>(existing_doctor.getSpecialties());
+		specialties.add(new_specialty);
+		existing_doctor.setSpecialties(specialties);
+
+		doctorRepository.save(existing_doctor);
+    }
+
+    @Override
+    public List<Doctor> listDoctors(){
+		List<Doctor> doctors = doctorRepository.findAll();
+		return doctors;
+    }
 }

@@ -3,6 +3,7 @@ package unmsm.hospital.sistemaCitas.controller;
 import jakarta.validation.Valid;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Role;
+import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
@@ -123,5 +124,25 @@ public class AdminController {
 		doctorService.saveDoctor(doctorDto);
 		return "redirect:/admin/doctor?success";
 	}
+
+	@GetMapping("/admin/doctor/specialty")
+	public String showDoctorSpecialtyForm(Model model){
+		List<Doctor> doctors = doctorService.listDoctors();
+		List<Specialty> specialties = specialtyService.listSpecialties();
+		model.addAttribute("doctors", doctors);
+		model.addAttribute("specialties", specialties);
+		model.addAttribute("doctor", new DoctorDto());
+		return "admin/doctor/specialty";
+	}
+
+	@PostMapping("/admin/doctor/specialty/save")
+	public String saveDoctorSpecialties(@ModelAttribute("doctor") Long doctor_id,
+										@ModelAttribute("specialty") Long specialty_id,
+										BindingResult result,
+										Model model){
+		doctorService.updateDoctor(doctor_id, specialty_id);
+		return "redirect:/admin/doctor/specialty?success";
+	}
+	
 
 }
