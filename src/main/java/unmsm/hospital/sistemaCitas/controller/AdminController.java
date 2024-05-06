@@ -1,13 +1,17 @@
 package unmsm.hospital.sistemaCitas.controller;
 
-import jakarta.validation.Valid;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Role;
 import unmsm.hospital.sistemaCitas.entity.Doctor;
-import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
+import unmsm.hospital.sistemaCitas.service.UserService;
+import unmsm.hospital.sistemaCitas.service.DoctorService;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
+import unmsm.hospital.sistemaCitas.dto.DoctorDto;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
+
+import java.util.List;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
-import unmsm.hospital.sistemaCitas.dto.DoctorDto;
-import unmsm.hospital.sistemaCitas.service.DoctorService;
 
 @Controller
 public class AdminController {
@@ -41,7 +41,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/user")
-    public String giveAdminRights(Model model) {
+   public String giveAdminRights(Model model) {
         String userEmail = new String();
         String role = new String();
         List<Role> roles = userService.listRoles();

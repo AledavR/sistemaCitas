@@ -1,8 +1,5 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import unmsm.hospital.sistemaCitas.dto.DoctorDto;
 import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.User;
@@ -10,10 +7,14 @@ import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
 import unmsm.hospital.sistemaCitas.repository.DoctorDirectoryRepository;
 import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
+import unmsm.hospital.sistemaCitas.dto.DoctorDto;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
 
 import java.util.List;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 @Service
 public class DoctorServiceImpl implements DoctorService {

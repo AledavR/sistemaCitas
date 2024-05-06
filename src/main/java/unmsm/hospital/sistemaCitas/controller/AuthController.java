@@ -1,9 +1,10 @@
 package unmsm.hospital.sistemaCitas.controller;
 
-import jakarta.validation.Valid;
 import unmsm.hospital.sistemaCitas.dto.UserDto;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.service.UserService;
+
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

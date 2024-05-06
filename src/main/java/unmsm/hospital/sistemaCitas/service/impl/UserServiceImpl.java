@@ -1,20 +1,20 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
-import unmsm.hospital.sistemaCitas.dto.UserDto;
 import unmsm.hospital.sistemaCitas.entity.Role;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.repository.RoleRepository;
 import unmsm.hospital.sistemaCitas.repository.UserRepository;
+import unmsm.hospital.sistemaCitas.dto.UserDto;
 import unmsm.hospital.sistemaCitas.service.UserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 
 @Service
 public class UserServiceImpl implements UserService {
