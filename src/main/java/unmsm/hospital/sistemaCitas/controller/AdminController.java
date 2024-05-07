@@ -176,6 +176,13 @@ public class AdminController {
         return "patients";
     }
 
+    @GetMapping("/doctors")
+    public String doctors(Model model){
+        List<Doctor> doctors = doctorService.listDoctors();
+        model.addAttribute("doctors", doctors);
+        return "doctors";
+    }
+
 	
 
 }
