@@ -3,6 +3,7 @@ package unmsm.hospital.sistemaCitas.controller;
 import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Role;
 import unmsm.hospital.sistemaCitas.entity.Doctor;
+import unmsm.hospital.sistemaCitas.entity.Patient;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
@@ -167,6 +168,14 @@ public class AdminController {
 		patientService.savePatient(patientDto);
 		return "redirect:/admin/patient?success";
 	}
+
+    @GetMapping("/patients")
+    public String patients(Model model){
+        List<Patient> patients = patientService.listPatients();
+        model.addAttribute("patients", patients);
+        return "patients";
+    }
+
 	
 
 }
