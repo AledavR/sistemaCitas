@@ -6,8 +6,10 @@ import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
+import unmsm.hospital.sistemaCitas.service.PatientService;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
 import unmsm.hospital.sistemaCitas.dto.DoctorDto;
+import unmsm.hospital.sistemaCitas.dto.PatientDto;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
 import java.util.List;
@@ -26,14 +28,17 @@ public class AdminController {
     private UserService userService;
     private SpecialtyService specialtyService;
     private final DoctorService doctorService;
+    private final PatientService patientService;
 
-    public AdminController(UserService userService,
-            SpecialtyService specialtyService,
-            DoctorService doctorService) {
-        this.userService = userService;
-        this.specialtyService = specialtyService;
-        this.doctorService = doctorService;
-    }
+	public AdminController(UserService userService,
+						   SpecialtyService specialtyService,
+						   DoctorService doctorService,
+						   PatientService patientService) {
+		this.userService = userService;
+		this.specialtyService = specialtyService;
+		this.doctorService = doctorService;
+		this.patientService = patientService;
+	}
 
     @GetMapping("/admin")
     public String showAdminMenu() {
@@ -41,7 +46,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/user")
-   public String giveAdminRights(Model model) {
+	public String giveAdminRights(Model model) {
         String userEmail = new String();
         String role = new String();
         List<Role> roles = userService.listRoles();
@@ -142,6 +147,25 @@ public class AdminController {
 										Model model){
 		doctorService.updateDoctor(doctor_id, specialty_id);
 		return "redirect:/admin/doctor/specialty?success";
+	}
+
+
+    @GetMapping("/admin/patient")
+    public String showAddPatientForm(Model model) {
+		model.addAttribute("patient", new PatientDto());
+		return "admin/patient";
+	}
+
+	@PostMapping("/admin/patient/save")
+	public String savePatient(@Valid @ModelAttribute("patient") PatientDto patientDto,
+							  BindingResult result,
+							  Model model) {
+		if (result.hasErrors()) {
+			// Falta agregar errores de validación?
+			return "admin/patient";
+		}
+		patientService.savePatient(patientDto);
+		return "redirect:/admin/patient?success";
 	}
 	
 
