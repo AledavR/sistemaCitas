@@ -183,6 +183,12 @@ public class AdminController {
         return "doctors";
     }
 
+    @GetMapping("/specialties")
+    public String specialties(Model model){
+        List<Specialty> specialties = specialtyService.listSpecialties();
+        model.addAttribute("specialties", specialties);
+        return "specialties";
+    }
 	
 
 }
