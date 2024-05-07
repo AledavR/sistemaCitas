@@ -32,10 +32,8 @@ public class SpringSecurity {
                     .requestMatchers("/index").permitAll()
                     .requestMatchers("/images/**").permitAll()
                     .requestMatchers("/css/**").permitAll()
-                    .requestMatchers("/users").hasRole("ADMIN")
-                    .requestMatchers("/patients").hasRole("ADMIN")
-                    .requestMatchers("/specialties").hasRole("ADMIN")
-                    .requestMatchers("/doctors").hasRole("ADMIN")
+                    .requestMatchers("/specialties").permitAll()
+                    .requestMatchers("/list/**").hasRole("ADMIN")
                     .requestMatchers("/admin/**").hasRole("ADMIN")
             ).formLogin(
                 form -> form

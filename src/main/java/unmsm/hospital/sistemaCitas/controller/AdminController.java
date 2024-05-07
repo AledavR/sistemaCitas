@@ -169,14 +169,14 @@ public class AdminController {
 		return "redirect:/admin/patient?success";
 	}
 
-    @GetMapping("/patients")
+    @GetMapping("/list/patients")
     public String patients(Model model){
         List<Patient> patients = patientService.listPatients();
         model.addAttribute("patients", patients);
         return "patients";
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("/list/doctors")
     public String doctors(Model model){
         List<Doctor> doctors = doctorService.listDoctors();
         model.addAttribute("doctors", doctors);
