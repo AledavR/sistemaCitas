@@ -10,11 +10,10 @@ import lombok.AllArgsConstructor;
 
 /**
  *
- * Entidad basica de paciente. Posee los atributos
- * names, lastnames y age
+ * Entidad basica de paciente. Posee los atributos names, lastnames y age
  * <p>
- * Presenta relaciones con las entidades PatientDirectory,
- * History, MedicalService y User 
+ * Presenta relaciones con las entidades PatientDirectory, History,
+ * MedicalService y User
  * @author Alejandro Ramirez
  *
  */
@@ -40,9 +39,10 @@ public class Patient {
 	 *
 	 * Definicion de la relacion uno a uno de la tabla paciente con la tabla
 	 * directorio_paciente, en este caso se usa el metodo de compartir una llave
-	 * primaria entre las tablas la cual es mapeada por el paciente. Es importante
-	 * indicar que este tipo de relacion conlleva a que sea necesario definir un
-	 * directorio de paciente por cada paciente. (NO PUEDE SER NULO...creo)
+	 * primaria entre las tablas la cual es mapeada por el paciente. Es
+	 * importante indicar que este tipo de relacion conlleva a que sea necesario
+	 * definir un directorio de paciente por cada paciente. (NO PUEDE SER
+	 * NULO... creo)
 	 *
 	 */
 	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
@@ -51,11 +51,12 @@ public class Patient {
 
 	/**
 	 * 
-	 * Definicion de una relacion de uno a uno usando una tabla relacional extra.
-	 * En este caso la tabla que las relaciona se llama "patient_history" la cual
-	 * posee como columnas a "patient_id" y "history_id" las cuales relacionan
-	 * las id de ambas tablas. Este metodo permite que el paciente no tenga una
-	 * historia previa por lo que podemos evitar los valores NULL en las tablas.
+	 * Definicion de una relacion de uno a uno usando una tabla relacional
+	 * extra.  En este caso la tabla que las relaciona se llama
+	 * "patient_history" la cual posee como columnas a "patient_id" y
+	 * "history_id" las cuales relacionan las id de ambas tablas. Este metodo
+	 * permite que el paciente no tenga una historia previa por lo que podemos
+	 * evitar los valores NULL en las tablas.
 	 *
 	 */
 	@OneToOne(cascade = CascadeType.ALL)

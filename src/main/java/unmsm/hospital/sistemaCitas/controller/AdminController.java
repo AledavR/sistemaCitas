@@ -173,14 +173,14 @@ public class AdminController {
     public String patients(Model model){
         List<Patient> patients = patientService.listPatients();
         model.addAttribute("patients", patients);
-        return "patients";
+        return "list/patients";
     }
 
     @GetMapping("/list/doctors")
     public String doctors(Model model){
         List<Doctor> doctors = doctorService.listDoctors();
         model.addAttribute("doctors", doctors);
-        return "doctors";
+        return "list/doctors";
     }
 
     @GetMapping("/specialties")
