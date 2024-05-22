@@ -44,6 +44,9 @@
       <div th:if="${param.success}">
 	<div class="alert alert-info">Se ha registrado de manera correcta.</div>
       </div>
+      <div th:if="${#fields.hasErrors('${user.*}')}">
+	<div class="alert alert-danger">No se ha podido registrar.</div>
+      </div>
       <div class="news_section_2">
         <div class="row">
           <div class="col-md-6">
@@ -56,7 +59,7 @@
               <h4 class="diabetes_text">Especialistas en el campo de la medicina</h4>
             </div>
             <div class="icon_main">
-              <div class="icon_7"><img src="images/icon-6.png"></div>
+              <div class="icon_7"><img src="images/icon-6.png" th:src="@{images/icon-6.png}"></div>
               <h4 class="diabetes_text">Laboratorios y equipo moderno</h4>
             </div>
           </div>
@@ -66,7 +69,7 @@
               <form
 		method="post"
 		role="form"
-		th:action="@{/register/save}"
+		th:action="@{/register}"
 		th:object="${user}"
 		>
 		<div class="form-group mb-3">
@@ -75,7 +78,7 @@
                     class="form-control"
                     id="firstName"
                     name="firstName"
-                    placeholder="Ingrese su primer nombre"
+                    placeholder="Ingrese su nombre"
                     th:field="*{firstName}"
                     type="text"
 		    />
@@ -130,7 +133,8 @@
 		  <!-- <buttom class="send_bt"><a type="submit" href="#">Register</a></buttom> -->
 		  <!-- Metodo provisional para correcto funcionamiento -->
 		  <button class="send_bt" type="submit">Registrarse</button>
-		  <span>¿Ya esta registrado? <a th:href="@{/login}">Inicie sesion</a></span>
+		  <span>¿Ya esta registrado? <a href="login.html"
+					       th:href="@{login}">Inicie sesion</a></span>
 		</div>
               </form>
             </div>

@@ -1,7 +1,5 @@
  <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
     <title>Sistema Administativo</title>
@@ -41,9 +39,12 @@
 	<div class="col-md-6 offset-md-3">
 
           <div th:if="${param.error}">
-            <div class="alert alert-danger">No existe usuario con este correo.</div>
+            <div class="alert alert-danger">Cometio un error al ingresar los datos.</div>
           </div>
 
+          <div th:if="${param.success}">
+            <div class="alert alert-success">Se añadieron los permisos correctamente</div>
+          </div>
           <div class="card">
             <div class="card-header">
 	      <h2 class="text-center">Administrar permisos de usuario</h2>
@@ -52,7 +53,7 @@
 	      <form
 		method="post"
 		role="form"
-		th:action="@{/admin/user/save}"
+		th:action="@{/admin/user}"
 		class="form-horizontal"
 		>
 		<div class="form-group mb-3">
@@ -65,6 +66,9 @@
 		    class="form-control"
 		    placeholder="Ingrese el correo del usuario"
 		    />
+		  <p th:if="${#fields.hasErrors('email')}"
+		     class="text-danger"
+		     th:errors="*{email}"></p>
 		  <label class="control-label">Rol</label>
 
 		  <select 

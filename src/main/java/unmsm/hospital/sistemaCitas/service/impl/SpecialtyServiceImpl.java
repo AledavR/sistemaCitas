@@ -12,11 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
 
-	@Autowired
+    @Autowired
     private SpecialtyRepository specialtyRepository;
 
     public SpecialtyServiceImpl(SpecialtyRepository specialtyRepository) {
@@ -30,15 +31,15 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         specialtyRepository.save(specialty);
     }
 
-	@Override
-	public List<Specialty> listSpecialties(){
-		List<Specialty> specialties = specialtyRepository.findAll();
-		return specialties;
-	}
-
-	@Override
-	public Specialty findSpecialtyByName(String name){
-		return specialtyRepository.findByName(name);
-	}
+    @Override
+    public List<Specialty> listSpecialties(){
+	List<Specialty> specialties = specialtyRepository.findAll();
+	return specialties;
+    }
+    
+    @Override
+    public Specialty findSpecialtyByName(String name){
+	return specialtyRepository.findByName(name);
+    }
 
 }

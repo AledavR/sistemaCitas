@@ -38,30 +38,30 @@ public class AuthController {
     }
 
      // handler method to handle user registration form submit request
-    @PostMapping("/register/save")
+    @PostMapping("/register")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
         if(existingUser != null &&
-		   existingUser.getEmail() != null &&
-		   !existingUser.getEmail().isEmpty())
-			{
-				result.rejectValue("email", null,
-								   "Ya hay una cuenta registrada con ese correo");
-			}
+	   existingUser.getEmail() != null &&
+	   !existingUser.getEmail().isEmpty())
+	    {
+		result.rejectValue("email", null,
+				   "Ya hay una cuenta registrada con ese correo");
+	    }
 
         if(result.hasErrors()){
             model.addAttribute("user", userDto);
-            return "/register";
+            return "register";
         }
 
         userService.saveUser(userDto);
         return "redirect:/register?success";
     }
 
-	// handler method to handle list of users
+    // handler method to handle list of users
     @GetMapping("/list/users")
     public String users(Model model){
         List<UserDto> users = userService.findAllUsers();
@@ -69,7 +69,7 @@ public class AuthController {
         return "list/users";
     }
 
-	// handler method to handle login request
+    // handler method to handle login request
     @GetMapping("/login")
     public String login(){
         return "login";

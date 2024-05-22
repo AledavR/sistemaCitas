@@ -19,62 +19,73 @@ import org.springframework.stereotype.Service;
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-	// Asegúrate de inyectar el UserService correctamente
-	private final DoctorRepository doctorRepository;
-	private final DoctorDirectoryRepository doctorDirectoryRepository;
-	private final SpecialtyRepository specialtyRepository;
-
+    private final DoctorRepository doctorRepository;
+    private final DoctorDirectoryRepository doctorDirectoryRepository;
+    private final SpecialtyRepository specialtyRepository;
+    
     @Autowired
     public DoctorServiceImpl
-		(DoctorRepository doctorRepository,
-		 DoctorDirectoryRepository doctorDirectoryRepository,
-		 SpecialtyRepository specialtyRepository) {
-
-		this.doctorRepository = doctorRepository;
-		this.doctorDirectoryRepository = doctorDirectoryRepository;
-		this.specialtyRepository = specialtyRepository;
-
+	(DoctorRepository doctorRepository,
+	 DoctorDirectoryRepository doctorDirectoryRepository,
+	 SpecialtyRepository specialtyRepository) {
+	
+	this.doctorRepository = doctorRepository;
+	this.doctorDirectoryRepository = doctorDirectoryRepository;
+	this.specialtyRepository = specialtyRepository;
+	
     }
 
     @Override
     public void saveDoctor(DoctorDto doctorDto) {
-
+	
         DoctorDirectory doctorDirectory = new DoctorDirectory();
         doctorDirectory.setAddress(doctorDto.getAddress());
         doctorDirectory.setPhone(doctorDto.getPhone());
-
+	
         Doctor doctor = new Doctor();
         doctor.setNames(doctorDto.getFirstName());
         doctor.setLastnames(doctorDto.getLastName());
-
-		ArrayList<Specialty> specialties = new ArrayList<Specialty>();
-		specialties.add(specialtyRepository
-						.findByName(doctorDto.getSpecialty()));
-		doctor.setSpecialties(specialties);
-		//ASOCIACION ENTRE DOCTORDIRECTORY Y DOCTOR
-		doctorDirectory.setDoctor(doctor);
-		// doctor.setDoctorDirectory(doctorDirectory);
-		
-		doctorRepository.save(doctor);
-		doctorDirectoryRepository.save(doctorDirectory);
+	
+	ArrayList<Specialty> specialties = new ArrayList<Specialty>();
+	specialties.add(specialtyRepository
+			.findByName(doctorDto.getSpecialty()));
+	doctor.setSpecialties(specialties);
+	//ASOCIACION ENTRE DOCTORDIRECTORY Y DOCTOR
+	doctorDirectory.setDoctor(doctor);
+	// doctor.setDoctorDirectory(doctorDirectory);
+	
+	doctorRepository.save(doctor);
+	doctorDirectoryRepository.save(doctorDirectory);
     }
-
+    
     @Override
-    public void updateDoctor(Long doctor_id, Long specialty_id) {
+    public void updateDoctorSpecialties(Long doctor_id, Long specialty_id) {
 
         Doctor existing_doctor = doctorRepository.getById(doctor_id);
-		Specialty new_specialty = specialtyRepository.getById(specialty_id);
-
-		ArrayList<Specialty> specialties = new ArrayList<Specialty>(existing_doctor.getSpecialties());
-		specialties.add(new_specialty);
-		existing_doctor.setSpecialties(specialties);
-
-		doctorRepository.save(existing_doctor);
+	Specialty new_specialty = specialtyRepository.getById(specialty_id);
+	
+	ArrayList<Specialty> specialties = new ArrayList<Specialty>(existing_doctor.getSpecialties());
+	specialties.add(new_specialty);
+	existing_doctor.setSpecialties(specialties);
+	
+	doctorRepository.save(existing_doctor);
+    }
+    
+    @Override
+    public Doctor findDoctorById(Long doctor_id){
+	return doctorRepository.getById(doctor_id);
     }
 
     @Override
     public List<Doctor> listDoctors(){
-		List<Doctor> doctors = doctorRepository.findAll();
-		return doctors;
+	List<Doctor> doctors = doctorRepository.findAll();
+	return doctors;
+    }
+
+    @Override
+    public List<Specialty> listDoctorSpecialties(Long doctor_id){
+	Doctor doctor = doctorRepository.getById(doctor_id);
+	List<Specialty> specialties = doctor.getSpecialties();
+	return specialties;
     }
 }

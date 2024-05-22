@@ -24,30 +24,68 @@
     <div class="row">
         <h1 class="text-center">Menu del Sistema Administrativo</h1>
     </div>
+    
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/admin/user}">Administrar permisos</a>
+      <h2 class="text-center">Usuarios</h2>
+    </div>
+
+    <div class="row">
+      <a class="btn btn-warning"
+	 th:href="@{/admin/user}">Administrar permisos</a>
+    </div>
+
+    <div class="row">
+      <a class="btn btn-warning"
+	 th:href="@{/list/users}">Listar usuarios</a>
+    </div>
+    
+    <div class="row">
+      <h2 class="text-center">Especialidades</h2>
     </div>
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/admin/specialty}">Agregar especialidad medica</a>
+      <a class="btn btn-warning"
+	 th:href="@{/admin/specialty}">Agregar especialidad medica</a>
     </div>
+
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/admin/doctor}">Agregar doctor</a>
+      <a class="btn btn-warning"
+	 th:href="@{/specialties}">Listar especialidades</a>
     </div>
+    
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/admin/doctor/specialty}">Agregar especialidad a doctor</a>
+      <h2 class="text-center">Doctores</h2>
     </div>
+    
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/list/users}">Listar usuarios</a>
+      <a class="btn btn-warning"
+	 th:href="@{/admin/doctor}">Agregar doctor</a>
     </div>
+    
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/list/patients}">Listar pacientes</a>
+      <a class="btn btn-warning"
+	 th:href="@{/admin/doctor/specialty}">Agregar especialidad a doctor</a>
     </div>
+
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/list/doctors}">Listar doctores</a>
+      <a class="btn btn-warning"
+	 th:href="@{/list/doctors}">Listar doctores</a>
     </div>
+    
     <div class="row">
-      <a class="btn btn-warning" th:href="@{/specialties}">Listar especialidades</a>
+      <h2 class="text-center">Pacientes</h2>
     </div>
+
+
+    <div class="row">
+      <a class="btn btn-warning"
+	 th:href="@{/admin/patient}">Agregar paciente</a>
+    </div>
+
+    <div class="row">
+      <a class="btn btn-warning"
+	 th:href="@{/list/patients}">Listar pacientes</a>
+    </div>
+
 </div>
 </body>
 </html>
