@@ -2,7 +2,6 @@ package unmsm.hospital.sistemaCitas.service.impl;
 
 import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
-import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
 import unmsm.hospital.sistemaCitas.repository.DoctorDirectoryRepository;
@@ -61,8 +60,8 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void updateDoctorSpecialties(Long doctor_id, Long specialty_id) {
 
-        Doctor existing_doctor = doctorRepository.getById(doctor_id);
-	Specialty new_specialty = specialtyRepository.getById(specialty_id);
+        Doctor existing_doctor = doctorRepository.getReferenceById(doctor_id);
+	Specialty new_specialty = specialtyRepository.getReferenceById(specialty_id);
 	
 	ArrayList<Specialty> specialties = new ArrayList<Specialty>(existing_doctor.getSpecialties());
 	specialties.add(new_specialty);
@@ -73,7 +72,7 @@ public class DoctorServiceImpl implements DoctorService {
     
     @Override
     public Doctor findDoctorById(Long doctor_id){
-	return doctorRepository.getById(doctor_id);
+	return doctorRepository.getReferenceById(doctor_id);
     }
 
     @Override

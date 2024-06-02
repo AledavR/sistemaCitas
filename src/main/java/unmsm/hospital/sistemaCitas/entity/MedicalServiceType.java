@@ -1,8 +1,6 @@
 package unmsm.hospital.sistemaCitas.entity;
 
 import java.util.List;
-import java.sql.Date;
-import java.util.ArrayList;
 
 import jakarta.persistence.*;
 import lombok.Getter;

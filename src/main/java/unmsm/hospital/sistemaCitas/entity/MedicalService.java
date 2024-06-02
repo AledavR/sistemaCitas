@@ -24,6 +24,10 @@ public class MedicalService {
 	@Temporal(TemporalType.DATE)
 	private Date service_date;
 
+    	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date creation_date;
+    
 	@ManyToOne
 	@JoinColumn(name = "patient_id", nullable = false)
 	private Patient patient;

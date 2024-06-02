@@ -19,9 +19,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+    @Autowired
     private UserRepository userRepository;
-	@Autowired
+    @Autowired
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -58,53 +58,54 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map((user) -> mapToUserDto(user))
-                .collect(Collectors.toList());
+	    .map((user) -> mapToUserDto(user))
+	    .collect(Collectors.toList());
     }
 
-	@Override
-	public void changeUserRoleByEmail(String email, String role_name){
-		User user = userRepository.findByEmail(email);
-		Role role = roleRepository.findByName(role_name);
+    @Override
+    public void changeUserRoleByEmail(String email, String role_name){
+	User user = userRepository.findByEmail(email);
+	Role role = roleRepository.findByName(role_name);
         if(role == null){
             role = checkRoleExist(role_name);
         }
-		List<Role> oldRoles = user.getRoles();
-		oldRoles.add(role);
+	List<Role> oldRoles = user.getRoles();
+	oldRoles.add(role);
 
-		System.out.println(oldRoles);
-		// List<Role> roles = new ArrayList<>(List.of(role));
-		List<Role> roles = new ArrayList<>(oldRoles);
+	System.out.println(oldRoles);
+	// List<Role> roles = new ArrayList<>(List.of(role));
+	List<Role> roles = new ArrayList<>(oldRoles);
 		
         user.setRoles(roles);
         userRepository.save(user);
-	}
+    }
 
-	@Override
-	public List<Role> listRoles(){
-		List<Role> roles = roleRepository.findAll();
-		return roles;
-	}
+    @Override
+    public List<Role> listRoles(){
+	List<Role> roles = roleRepository.findAll();
+	return roles;
+    }
 
     private UserDto mapToUserDto(User user){
-				UserDto userDto = new UserDto();
-				String[] str = user.getName().split(" ");
-				userDto.setFirstName(str[0]);
-				userDto.setLastName(str[1]);
-				userDto.setEmail(user.getEmail());
-				return userDto;
-	}
+	UserDto userDto = new UserDto();
+	String[] str = user.getName().split(" ");
+	userDto.setFirstName(str[0]);
+	userDto.setLastName(str[1]);
+	userDto.setEmail(user.getEmail());
+	return userDto;
+    }
 
-	//Estuve cambiando esto
-	private Role checkRoleExist(String role_name){
-		Role role = new Role();
-		role.setName(role_name);
-		return roleRepository.save(role);
-	}
+    //TODO Revisar que esto funciona correctamente.
+    private Role checkRoleExist(String role_name){
+	Role role = new Role();
+	role.setName(role_name);
+	return roleRepository.save(role);
+    }
 
-	private Role checkRoleAdminExist(){
-		Role role = new Role();
-		role.setName("ROLE_ADMIN");
-		return roleRepository.save(role);
-	}
+    
+    // private Role checkRoleAdminExist(){
+    // 	Role role = new Role();
+    // 	role.setName("ROLE_ADMIN");
+    // 	return roleRepository.save(role);
+    // }
 }

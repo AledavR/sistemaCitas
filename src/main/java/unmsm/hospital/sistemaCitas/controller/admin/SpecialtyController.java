@@ -1,4 +1,4 @@
-package unmsm.hospital.sistemaCitas.controller;
+package unmsm.hospital.sistemaCitas.controller.admin;
 
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
