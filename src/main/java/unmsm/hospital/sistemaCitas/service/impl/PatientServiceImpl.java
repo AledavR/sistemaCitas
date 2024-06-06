@@ -2,15 +2,12 @@ package unmsm.hospital.sistemaCitas.service.impl;
 
 import unmsm.hospital.sistemaCitas.entity.Patient;
 import unmsm.hospital.sistemaCitas.entity.PatientDirectory;
-import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.repository.PatientRepository;
 import unmsm.hospital.sistemaCitas.repository.PatientDirectoryRepository;
 import unmsm.hospital.sistemaCitas.dto.PatientDto;
 import unmsm.hospital.sistemaCitas.service.PatientService;
 
 import java.util.List;
-import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -21,7 +18,6 @@ public class PatientServiceImpl implements PatientService {
 	private final PatientRepository patientRepository;
 	private final PatientDirectoryRepository patientDirectoryRepository;
 
-    @Autowired
     public PatientServiceImpl
 		(PatientRepository patientRepository,
 		 PatientDirectoryRepository patientDirectoryRepository) {

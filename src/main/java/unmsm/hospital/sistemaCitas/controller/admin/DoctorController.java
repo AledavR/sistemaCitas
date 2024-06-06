@@ -1,24 +1,26 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
-import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Doctor;
+import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.UserService;
+import unmsm.hospital.sistemaCitas.service.DoctorDirService;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
 import unmsm.hospital.sistemaCitas.dto.DoctorDto;
-import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
 import java.util.List;
 import java.util.Iterator;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class DoctorController {
@@ -26,13 +28,16 @@ public class DoctorController {
     private final UserService userService;
     private final SpecialtyService specialtyService;
     private final DoctorService doctorService;
+	private final DoctorDirService doctorDirService;
 
     public DoctorController(UserService userService,
 			    SpecialtyService specialtyService,
+				DoctorDirService doctorDirService,
 			    DoctorService doctorService)
     {
 	this.userService = userService;
 	this.specialtyService = specialtyService;
+	this.doctorDirService = doctorDirService;
 	this.doctorService = doctorService;
     }
 
@@ -109,5 +114,19 @@ public class DoctorController {
         model.addAttribute("doctors", doctors);
         return "list/doctors";
     }
+
+	@GetMapping("/doctors/{id}")
+	public String viewDoctor(@PathVariable Long id, Model model) {
+		Doctor doctor = doctorService.findDoctorById(id);
+		DoctorDirectory doctorDirectory = doctorDirService.findDoctorDirById(id);
+		if (doctor == null) {
+			return "error-view";
+		}
+		System.out.println(doctor.getNames());
+		model.addAttribute("doctor", doctor);
+		model.addAttribute("directory", doctorDirectory);
+		return "doctor-view";
+	}
+	
 
 }

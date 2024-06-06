@@ -1,6 +1,5 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
-import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Patient;
 import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.service.PatientService;
@@ -8,7 +7,6 @@ import unmsm.hospital.sistemaCitas.dto.PatientDto;
 
 import java.util.List;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

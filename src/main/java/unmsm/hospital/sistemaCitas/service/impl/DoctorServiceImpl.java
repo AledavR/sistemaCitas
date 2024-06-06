@@ -11,7 +11,6 @@ import unmsm.hospital.sistemaCitas.service.DoctorService;
 
 import java.util.List;
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -21,8 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final DoctorDirectoryRepository doctorDirectoryRepository;
     private final SpecialtyRepository specialtyRepository;
-    
-    @Autowired
+
     public DoctorServiceImpl
 	(DoctorRepository doctorRepository,
 	 DoctorDirectoryRepository doctorDirectoryRepository,
@@ -59,8 +57,7 @@ public class DoctorServiceImpl implements DoctorService {
     
     @Override
     public void updateDoctorSpecialties(Long doctor_id, Long specialty_id) {
-
-        Doctor existing_doctor = doctorRepository.getReferenceById(doctor_id);
+	Doctor existing_doctor = doctorRepository.getReferenceById(doctor_id);
 	Specialty new_specialty = specialtyRepository.getReferenceById(specialty_id);
 	
 	ArrayList<Specialty> specialties = new ArrayList<Specialty>(existing_doctor.getSpecialties());
@@ -83,7 +80,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Specialty> listDoctorSpecialties(Long doctor_id){
-	Doctor doctor = doctorRepository.getById(doctor_id);
+	Doctor doctor = doctorRepository.getReferenceById(doctor_id);
 	List<Specialty> specialties = doctor.getSpecialties();
 	return specialties;
     }
