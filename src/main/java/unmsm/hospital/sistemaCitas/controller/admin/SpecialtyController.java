@@ -1,7 +1,11 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
+import unmsm.hospital.sistemaCitas.entity.Doctor;
+import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
+import unmsm.hospital.sistemaCitas.entity.SpecialtyInfo;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
+import unmsm.hospital.sistemaCitas.service.SpecialtyInfoService;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
 import java.util.List;
@@ -11,15 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SpecialtyController {
 
     private final SpecialtyService specialtyService;
+    private final SpecialtyInfoService specialtyInfoService;
 
-    public SpecialtyController(SpecialtyService specialtyService){
+    public SpecialtyController(SpecialtyService specialtyService , SpecialtyInfoService specialtyInfoService){
 		this.specialtyService = specialtyService;
+        this.specialtyInfoService = specialtyInfoService;
     }
 
     @GetMapping("/admin/specialty")
@@ -58,6 +65,15 @@ public class SpecialtyController {
         model.addAttribute("specialties", specialties);
         return "specialties";
     }
-	
 
+    @GetMapping("/specialties/{name}")
+	public String viewSpecialties(@PathVariable String name, Model model) {
+		Specialty specialty = specialtyService.findSpecialtyByName(name);
+        Long specialty_id = specialty.getId();
+		SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialty_id);
+		model.addAttribute("specialty", specialty);
+		model.addAttribute("specialtyInfo", specialtyInfo);
+		return "specialty-view";
+	}
+	
 }

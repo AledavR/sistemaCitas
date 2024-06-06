@@ -16,15 +16,9 @@ public class SpecialtyInfo {
     private Long id;
 
     /*
-	 * Esta variable guarda la "informacion" de la especialidad
-	 */
-    @Column(nullable = false)
-    private String info;
-
-    /*
 	 * Esta variable guarda una descripcion de la especialidad
 	 */
-    @Column(nullable = false)
+    @Column(nullable = false, length = 500)
     private String description;
 
     @OneToOne
