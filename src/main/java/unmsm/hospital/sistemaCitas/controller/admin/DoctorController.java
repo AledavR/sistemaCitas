@@ -122,10 +122,10 @@ public class DoctorController {
 		if (doctor == null) {
 			return "error-view";
 		}
-		System.out.println(doctor.getNames());
 		model.addAttribute("doctor", doctor);
 		model.addAttribute("directory", doctorDirectory);
 		return "doctor-view";
+
 	}
 	
 
