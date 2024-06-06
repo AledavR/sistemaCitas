@@ -28,5 +28,8 @@ public class Specialty {
 
 	@OneToMany(mappedBy = "specialty")
 	private Set<MedicalService> medicalServices = new HashSet<>();
-	
+
+	@OneToOne(mappedBy = "specialty", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private SpecialtyInfo specialtyInfo;
 }
