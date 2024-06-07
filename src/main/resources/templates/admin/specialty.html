@@ -47,18 +47,43 @@
 		class="form-horizontal"
 		>
 		<div class="form-group mb-3">
-		  <label class="control-label">Nombre de la especialidad</label>
+		  <label class="control-label">Nombre de la especialidad sin caracteres especiales</label>
 		  <input
 		    type="text"
 		    id="name"
 		    name="name"
 		    th:field="*{name}"
 		    class="form-control"
-		    placeholder="Ingrese el nombre de la especialidad"
+		    placeholder="Ingrese el nombre de la especialidad sin caracteres especiales"
 		    />
-		  <p th:errors="*{name}"
+			<p th:errors="*{name}"
+				class="text-danger"
+				th:if="${#fields.hasErrors('name')}"></p>
+			<label class="control-label">Nombre correcto de la especialidad</label>
+			<input
+		    type="text"
+		    id="realname"
+		    name="realname"
+		    th:field="*{realname}"
+		    class="form-control"
+		    placeholder="Ingrese el nombre correcto de la especialidad"
+		    />
+			<p th:errors="*{realname}"
 		     class="text-danger"
-		     th:if="${#fields.hasErrors('name')}">Estoy desesperado, muestrate error</p>
+		     th:if="${#fields.hasErrors('realname')}"></p>
+			<label class="control-label">Descripción de la especialidad</label>
+			<textarea
+			type="text"
+			id="description"
+			name="description"
+			th:field="*{description}"
+			class="form-control"
+			placeholder="Ingrese la descripción de la especialidad"
+			maxlength="1200">
+			</textarea>
+			 <p th:errors="*{description}"
+		     class="text-danger"
+		     th:if="${#fields.hasErrors('description')}"></p>
 		</div>
 
                 <div class="form-group mb-3">

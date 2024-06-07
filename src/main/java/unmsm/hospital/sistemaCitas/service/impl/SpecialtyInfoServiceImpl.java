@@ -1,5 +1,7 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import unmsm.hospital.sistemaCitas.entity.SpecialtyInfo;
@@ -18,5 +20,11 @@ public class SpecialtyInfoServiceImpl implements SpecialtyInfoService {
     @Override
     public SpecialtyInfo findSpecialtyInfoById(Long specialty_id){
         return specialtyInfoRepository.getReferenceById(specialty_id);
+    }
+
+    @Override
+    public List<SpecialtyInfo> listSpecialtiesInfo(){
+        List<SpecialtyInfo> specialtiesInfo = specialtyInfoRepository.findAll();
+        return specialtiesInfo;
     }
 }

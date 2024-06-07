@@ -18,12 +18,12 @@ public class SpecialtyInfo {
     /*
 	 * Esta variable guarda una descripcion de la especialidad
 	 */
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 1200)
     private String description;
 
     /**
-     * Este atributo sirve para almacenar el gramaticamente correcto
-     *  de la especialidad.
+     * Este atributo sirve para almacenar el nombre 
+     * gramaticamente correcto de la especialidad.
      */
     @Column(nullable = false)
     private String realname;

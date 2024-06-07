@@ -31,8 +31,7 @@ public class SpecialtyController {
 
     @GetMapping("/admin/specialty")
     public String showSpecialtyForm(Model model) {
-        SpecialtyDto specialty = new SpecialtyDto();
-        model.addAttribute("specialty", specialty);
+        model.addAttribute("specialty", new SpecialtyDto());
         return "admin/specialty";
     }
 
@@ -61,19 +60,15 @@ public class SpecialtyController {
 
     @GetMapping("/specialties")
     public String specialties(Model model){
-        List<Specialty> specialties = specialtyService.listSpecialties();
-        model.addAttribute("specialties", specialties);
+        model.addAttribute("specialtiesInfo", specialtyInfoService.listSpecialtiesInfo());
         return "specialties";
     }
 
     @GetMapping("/specialties/{name}")
 	public String viewSpecialties(@PathVariable String name, Model model) {
-		Specialty specialty = specialtyService.findSpecialtyByName(name);
-        Long specialty_id = specialty.getId();
-		SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialty_id);
-		model.addAttribute("specialty", specialty);
+		SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialtyService.findSpecialtyByName(name).getId());
 		model.addAttribute("specialtyInfo", specialtyInfo);
 		return "specialty-view";
 	}
-	
+
 }

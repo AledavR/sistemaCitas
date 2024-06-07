@@ -37,8 +37,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each = "specialty : ${specialties}">
-                <td th:text = "${specialty.name}"></td>
+            <tr th:each = "specialtyInfo : ${specialtiesInfo}">
+                <td ><a th:text = "${specialtyInfo.realname}" 
+                    class="btn btn-info" 
+                    th:href="@{/specialties/{name}(name = ${specialtyInfo.getSpecialty().name})}">
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>
