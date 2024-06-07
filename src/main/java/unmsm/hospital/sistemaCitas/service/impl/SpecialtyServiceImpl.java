@@ -29,13 +29,13 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Override
     public List<Specialty> listSpecialties(){
-	List<Specialty> specialties = specialtyRepository.findAll();
-	return specialties;
+        List<Specialty> specialties = specialtyRepository.findAll();
+        return specialties;
     }
     
     @Override
     public Specialty findSpecialtyByName(String name){
-	return specialtyRepository.findByName(name);
+        return specialtyRepository.findByName(name);
     }
 
 }

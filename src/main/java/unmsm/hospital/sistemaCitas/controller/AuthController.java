@@ -45,12 +45,12 @@ public class AuthController {
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
         if(existingUser != null &&
-	   existingUser.getEmail() != null &&
-	   !existingUser.getEmail().isEmpty())
-	    {
-		result.rejectValue("email", null,
-				   "Ya hay una cuenta registrada con ese correo");
-	    }
+           existingUser.getEmail() != null &&
+           !existingUser.getEmail().isEmpty())
+            {
+                result.rejectValue("email", null,
+                                   "Ya hay una cuenta registrada con ese correo");
+            }
 
         if(result.hasErrors()){
             model.addAttribute("user", userDto);

@@ -21,6 +21,13 @@ public class SpecialtyInfo {
     @Column(nullable = false, length = 500)
     private String description;
 
+    /**
+     * Este atributo sirve para almacenar el gramaticamente correcto
+     *  de la especialidad.
+     */
+    @Column(nullable = false)
+    private String realname;
+    
     @OneToOne
     @MapsId
     @JoinColumn(name = "specialty_id")

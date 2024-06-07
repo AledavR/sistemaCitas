@@ -12,13 +12,11 @@ public class SpecialtyInfoServiceImpl implements SpecialtyInfoService {
     private final SpecialtyInfoRepository specialtyInfoRepository;
 
     public SpecialtyInfoServiceImpl (SpecialtyInfoRepository specialtyInfoRepository) {
-	
 	    this.specialtyInfoRepository = specialtyInfoRepository;
-	
     }
 
     @Override
     public SpecialtyInfo findSpecialtyInfoById(Long specialty_id){
-	    return specialtyInfoRepository.getReferenceById(specialty_id);
+        return specialtyInfoRepository.getReferenceById(specialty_id);
     }
 }

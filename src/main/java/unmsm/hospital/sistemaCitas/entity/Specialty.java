@@ -15,21 +15,22 @@ import lombok.AllArgsConstructor;
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 @Table(name = "specialties")
 public class Specialty {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(nullable = false, unique = true)
-	private String name;
-
-	@ManyToMany(mappedBy = "specialties")
-	private List<Doctor> doctors = new ArrayList<>();
-
-	@OneToMany(mappedBy = "specialty")
-	private Set<MedicalService> medicalServices = new HashSet<>();
-
-	@OneToOne(mappedBy = "specialty", cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private SpecialtyInfo specialtyInfo;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(nullable = false, unique = true)
+    private String name;
+    
+    @ManyToMany(mappedBy = "specialties")
+    private List<Doctor> doctors = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "specialty")
+    private Set<MedicalService> medicalServices = new HashSet<>();
+    
+    @OneToOne(mappedBy = "specialty", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private SpecialtyInfo specialtyInfo;
+    
 }

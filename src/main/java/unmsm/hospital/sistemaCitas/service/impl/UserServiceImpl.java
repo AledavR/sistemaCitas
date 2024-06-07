@@ -64,42 +64,42 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changeUserRoleByEmail(String email, String role_name){
-	User user = userRepository.findByEmail(email);
-	Role role = roleRepository.findByName(role_name);
+        User user = userRepository.findByEmail(email);
+        Role role = roleRepository.findByName(role_name);
         if(role == null){
             role = checkRoleExist(role_name);
         }
-	List<Role> oldRoles = user.getRoles();
-	oldRoles.add(role);
-
-	System.out.println(oldRoles);
-	// List<Role> roles = new ArrayList<>(List.of(role));
-	List<Role> roles = new ArrayList<>(oldRoles);
-		
+        List<Role> oldRoles = user.getRoles();
+        oldRoles.add(role);
+        
+        System.out.println(oldRoles);
+        // List<Role> roles = new ArrayList<>(List.of(role));
+        List<Role> roles = new ArrayList<>(oldRoles);
+        
         user.setRoles(roles);
         userRepository.save(user);
     }
 
     @Override
     public List<Role> listRoles(){
-	List<Role> roles = roleRepository.findAll();
-	return roles;
+        List<Role> roles = roleRepository.findAll();
+        return roles;
     }
 
     private UserDto mapToUserDto(User user){
-	UserDto userDto = new UserDto();
-	String[] str = user.getName().split(" ");
-	userDto.setFirstName(str[0]);
-	userDto.setLastName(str[1]);
-	userDto.setEmail(user.getEmail());
-	return userDto;
+        UserDto userDto = new UserDto();
+        String[] str = user.getName().split(" ");
+        userDto.setFirstName(str[0]);
+        userDto.setLastName(str[1]);
+        userDto.setEmail(user.getEmail());
+        return userDto;
     }
 
     //TODO Revisar que esto funciona correctamente.
     private Role checkRoleExist(String role_name){
-	Role role = new Role();
-	role.setName(role_name);
-	return roleRepository.save(role);
+        Role role = new Role();
+        role.setName(role_name);
+        return roleRepository.save(role);
     }
 
     

@@ -21,28 +21,28 @@ public class PatientController {
     private final PatientService patientService;
 
     public PatientController(UserService userService,
-			     PatientService patientService) {
-	this.userService = userService;
-	this.patientService = patientService;
+                             PatientService patientService) {
+        this.userService = userService;
+        this.patientService = patientService;
     }
 
     @GetMapping("/admin/patient")
     public String showAddPatientForm(Model model) {
-	model.addAttribute("patient", new PatientDto());
-	return "admin/patient";
+        model.addAttribute("patient", new PatientDto());
+        return "admin/patient";
     }
 
     @PostMapping("/admin/patient")
     public String savePatient(@Valid @ModelAttribute("patient") PatientDto patientDto,
-			      BindingResult result,
-			      Model model) {
-	
-	if (result.hasErrors()) {
-	    model.addAttribute("patient", patientDto);
-	    return "admin/patient";
-	}
-	patientService.savePatient(patientDto);
-	return "redirect:/admin/patient?success";
+                              BindingResult result,
+                              Model model) {
+        
+        if (result.hasErrors()) {
+            model.addAttribute("patient", patientDto);
+            return "admin/patient";
+        }
+        patientService.savePatient(patientDto);
+        return "redirect:/admin/patient?success";
     }
 
     @GetMapping("/list/patients")

@@ -10,25 +10,23 @@ import lombok.AllArgsConstructor;
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 @Table(name = "histories")
 public class History {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column
-	private String medical_conditions;
-
-	@Column
-	private String operations;
-
-	@Column
-	private String allergies;
-
-	@Column
-	private String treatments;
-
-	@OneToOne(mappedBy = "history")
-	private Patient patient;
-
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column
+    private String medical_conditions;
+    
+    @Column
+    private String operations;
+    
+    @Column
+    private String allergies;
+    
+    @Column
+    private String treatments;
+    
+    @OneToOne(mappedBy = "history")
+    private Patient patient;
+    
 }

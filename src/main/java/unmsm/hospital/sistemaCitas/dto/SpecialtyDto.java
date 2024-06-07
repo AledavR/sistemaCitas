@@ -10,8 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SpecialtyDto
-{
+public class SpecialtyDto{
     private Long id;
 
     @NotEmpty(message = "Ingrese el nombre de la especialidad")

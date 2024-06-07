@@ -38,16 +38,16 @@ public class SpecialtyController {
 
     @PostMapping("/admin/specialty")
     public String saveSpecialty(@Valid @ModelAttribute("specialty") SpecialtyDto specialtyDto,
-								BindingResult result,
-								Model model) {
+                                BindingResult result,
+                                Model model) {
         Specialty existingSpecialty = specialtyService
-	    .findSpecialtyByName(specialtyDto.getName());
-
+            .findSpecialtyByName(specialtyDto.getName());
+        
         if (existingSpecialty != null
-	    && existingSpecialty.getName() != null
-	    && !existingSpecialty.getName().isEmpty()) {
+            && existingSpecialty.getName() != null
+            && !existingSpecialty.getName().isEmpty()) {
             result.rejectValue("name", null,
-			       "Esa especialidad ya esta registrada");
+                               "Esa especialidad ya esta registrada");
         }
 
         if (result.hasErrors()) {

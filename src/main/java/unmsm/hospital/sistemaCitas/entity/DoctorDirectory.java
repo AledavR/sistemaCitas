@@ -10,20 +10,20 @@ import lombok.AllArgsConstructor;
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 @Table(name = "doctor_directory")
 public class DoctorDirectory {
-
-	@Id
-	@Column(name = "doctor_id")
-	private Long id;
-
-	@Column(nullable = false)
-	private String phone;
-
-	@Column(nullable = false)
-	private String address;
-
-	@OneToOne
-	@MapsId
-	@JoinColumn(name = "doctor_id")
-	private Doctor doctor;
-	
+    
+    @Id
+    @Column(name = "doctor_id")
+    private Long id;
+    
+    @Column(nullable = false)
+    private String phone;
+    
+    @Column(nullable = false)
+    private String address;
+    
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+    
 }
