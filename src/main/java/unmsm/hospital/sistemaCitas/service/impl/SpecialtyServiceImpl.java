@@ -6,12 +6,12 @@ import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 import unmsm.hospital.sistemaCitas.repository.SpecialtyInfoRepository;
 import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
-import unmsm.hospital.sistemaCitas.service.SpecialtyInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
@@ -29,8 +29,9 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public void saveSpecialty(SpecialtyDto specialtyDto) {
         Specialty specialty = new Specialty();
         SpecialtyInfo specialtyInfo = new SpecialtyInfo();
-        specialty.setName(specialtyDto.getName());
-        specialtyInfo.setRealname(specialtyDto.getRealname());
+        String realname = specialtyDto.getRealname();
+        specialty.setName(StringUtils.stripAccents(realname).toLowerCase());
+        specialtyInfo.setRealname(realname);
         specialtyInfo.setDescription(specialtyDto.getDescription());
         specialtyInfo.setSpecialty(specialty);
         specialtyRepository.save(specialty);

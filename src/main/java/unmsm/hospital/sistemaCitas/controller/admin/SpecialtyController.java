@@ -1,14 +1,11 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
-import unmsm.hospital.sistemaCitas.entity.Doctor;
-import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.entity.SpecialtyInfo;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
 import unmsm.hospital.sistemaCitas.service.SpecialtyInfoService;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
-import java.util.List;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.apache.commons.lang3.StringUtils;
 
 @Controller
 public class SpecialtyController {
@@ -25,7 +23,7 @@ public class SpecialtyController {
     private final SpecialtyInfoService specialtyInfoService;
 
     public SpecialtyController(SpecialtyService specialtyService , SpecialtyInfoService specialtyInfoService){
-		this.specialtyService = specialtyService;
+        this.specialtyService = specialtyService;
         this.specialtyInfoService = specialtyInfoService;
     }
 
@@ -40,12 +38,12 @@ public class SpecialtyController {
                                 BindingResult result,
                                 Model model) {
         Specialty existingSpecialty = specialtyService
-            .findSpecialtyByName(specialtyDto.getName());
+            .findSpecialtyByName(StringUtils.stripAccents(specialtyDto.getRealname()).toLowerCase());
         
         if (existingSpecialty != null
             && existingSpecialty.getName() != null
             && !existingSpecialty.getName().isEmpty()) {
-            result.rejectValue("name", null,
+            result.rejectValue("realname", null,
                                "Esa especialidad ya esta registrada");
         }
 
@@ -65,10 +63,10 @@ public class SpecialtyController {
     }
 
     @GetMapping("/specialties/{name}")
-	public String viewSpecialties(@PathVariable String name, Model model) {
-		SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialtyService.findSpecialtyByName(name).getId());
-		model.addAttribute("specialtyInfo", specialtyInfo);
-		return "specialty-view";
-	}
+    public String viewSpecialties(@PathVariable String name, Model model) {
+        SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialtyService.findSpecialtyByName(name).getId());
+        model.addAttribute("specialtyInfo", specialtyInfo);
+        return "specialty-view";
+    }
 
 }

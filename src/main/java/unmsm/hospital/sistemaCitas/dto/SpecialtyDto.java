@@ -14,9 +14,6 @@ public class SpecialtyDto{
     
     private Long id;
 
-    @NotEmpty(message = "Ingrese el nombre de la especialidad")
-    private String name;
-
     @NotEmpty(message = "Ingrese una descripción para la especialidad")
     private String description;
 
