@@ -37,10 +37,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each = "specialtyInfo : ${specialtiesInfo}">
-                <td ><a th:text = "${specialtyInfo.realname}" 
+            <tr th:each = "specialty : ${specialties}">
+                <td ><a th:text = "${specialty.realname}" 
                     class="btn btn-info" 
-                    th:href="@{/specialties/{name}(name = ${specialtyInfo.getSpecialty().name})}">
+                    th:href="@{/specialties/{name}(name = ${specialty.name})}">
                     </a>
                 </td>
             </tr>

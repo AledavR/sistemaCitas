@@ -30,19 +30,18 @@
     <div class="row col-md-10">
         <h2>Lista de pacientes registrados</h2>
     </div>
+    
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Edad</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each = "patient : ${patients}">
-                <td th:text = "${patient.names}"></td>
-                <td th:text = "${patient.lastnames}"></td>
-                <td th:text = "${patient.age}"></td>
+                <td th:text = "${patient.getUser().names}"></td>
+                <td th:text = "${patient.getUser().lastnames}"></td>
             </tr>
         </tbody>
     </table>

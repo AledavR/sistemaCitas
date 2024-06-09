@@ -1,10 +1,10 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
+
 import unmsm.hospital.sistemaCitas.entity.Patient;
-import unmsm.hospital.sistemaCitas.entity.PatientDirectory;
+import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.repository.PatientRepository;
-import unmsm.hospital.sistemaCitas.repository.PatientDirectoryRepository;
-import unmsm.hospital.sistemaCitas.dto.PatientDto;
+import unmsm.hospital.sistemaCitas.repository.UserRepository;
 import unmsm.hospital.sistemaCitas.service.PatientService;
 
 import java.util.List;
@@ -16,31 +16,23 @@ public class PatientServiceImpl implements PatientService {
     
     // Asegúrate de inyectar el UserService correctamente
     private final PatientRepository patientRepository;
-    private final PatientDirectoryRepository patientDirectoryRepository;
+    private final UserRepository userRepository;
     
     public PatientServiceImpl(PatientRepository patientRepository,
-                              PatientDirectoryRepository patientDirectoryRepository) {
+                              UserRepository userRepository) {
         this.patientRepository = patientRepository;
-        this.patientDirectoryRepository = patientDirectoryRepository;
+        this.userRepository = userRepository;
     }
+    
     @Override
-    public void savePatient(PatientDto patientDto) {
+    public void savePatient(Long user_id) {
         
-        PatientDirectory patientDirectory = new PatientDirectory();
-        patientDirectory.setAddress(patientDto.getAddress());
-        patientDirectory.setPhone(patientDto.getPhone());
-
         Patient patient = new Patient();
-        patient.setNames(patientDto.getFirstName());
-        patient.setLastnames(patientDto.getLastName());
-        patient.setAge(patientDto.getAge());
-        
-        //ASOCIACION ENTRE PATIENTDIRECTORY Y PATIENT
-        patientDirectory.setPatient(patient);
-        // patient.setPatientDirectory(patientDirectory);
-        
+        User user = userRepository.getReferenceById(user_id);
+
+        patient.setUser(user);
         patientRepository.save(patient);
-        patientDirectoryRepository.save(patientDirectory);
+        
     }
 
     @Override

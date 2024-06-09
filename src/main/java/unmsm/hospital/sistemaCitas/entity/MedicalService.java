@@ -37,7 +37,7 @@ public class MedicalService {
     private Doctor doctor;
     
     @ManyToOne
-    @JoinColumn(name = "type_id", referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
     private MedicalServiceType medicalServiceType;
     
     @ManyToOne

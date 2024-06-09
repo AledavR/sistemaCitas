@@ -36,8 +36,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
-        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        user.setNames(userDto.getNames());
+        user.setLastnames(userDto.getLastnames());
         user.setEmail(userDto.getEmail());
+        user.setBirthday(userDto.getBirthday());
+        user.setPhone(userDto.getPhone());
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
@@ -88,10 +91,11 @@ public class UserServiceImpl implements UserService {
 
     private UserDto mapToUserDto(User user){
         UserDto userDto = new UserDto();
-        String[] str = user.getName().split(" ");
-        userDto.setFirstName(str[0]);
-        userDto.setLastName(str[1]);
+        userDto.setNames(user.getNames());
+        userDto.setLastnames(user.getLastnames());
         userDto.setEmail(user.getEmail());
+        userDto.setBirthday(user.getBirthday());
+        userDto.setPhone(user.getPhone());
         return userDto;
     }
 

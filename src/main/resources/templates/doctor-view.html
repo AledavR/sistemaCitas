@@ -35,16 +35,16 @@
             <tr>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Dirección</th>
+                <th>Correo</th>
                 <th>Telefono</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td th:text = ${doctor.names}></td>
-                <td th:text = ${doctor.lastnames}></td>
-                <td th:text = ${directory.address}></td>
-                <td th:text = ${directory.phone}></td>
+                <td th:text = "${user.names}"></td>
+                <td th:text = "${user.lastnames}"></td>
+                <td th:text = "${user.email}"></td>
+                <td th:text = "${user.phone}"></td>
             </tr>
         </tbody>
     </table>

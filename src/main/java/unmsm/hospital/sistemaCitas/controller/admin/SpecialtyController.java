@@ -1,9 +1,7 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
 import unmsm.hospital.sistemaCitas.entity.Specialty;
-import unmsm.hospital.sistemaCitas.entity.SpecialtyInfo;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
-import unmsm.hospital.sistemaCitas.service.SpecialtyInfoService;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
 import jakarta.validation.Valid;
@@ -20,11 +18,9 @@ import org.apache.commons.lang3.StringUtils;
 public class SpecialtyController {
 
     private final SpecialtyService specialtyService;
-    private final SpecialtyInfoService specialtyInfoService;
 
-    public SpecialtyController(SpecialtyService specialtyService , SpecialtyInfoService specialtyInfoService){
+    public SpecialtyController(SpecialtyService specialtyService){
         this.specialtyService = specialtyService;
-        this.specialtyInfoService = specialtyInfoService;
     }
 
     @GetMapping("/admin/specialty")
@@ -58,14 +54,14 @@ public class SpecialtyController {
 
     @GetMapping("/specialties")
     public String specialties(Model model){
-        model.addAttribute("specialtiesInfo", specialtyInfoService.listSpecialtiesInfo());
+        model.addAttribute("specialties", specialtyService.listSpecialties());
         return "specialties";
     }
 
     @GetMapping("/specialties/{name}")
     public String viewSpecialties(@PathVariable String name, Model model) {
-        SpecialtyInfo specialtyInfo = specialtyInfoService.findSpecialtyInfoById(specialtyService.findSpecialtyByName(name).getId());
-        model.addAttribute("specialtyInfo", specialtyInfo);
+        Specialty specialty = specialtyService.findSpecialtyByName(name);
+        model.addAttribute("specialty", specialty);
         return "specialty-view";
     }
 

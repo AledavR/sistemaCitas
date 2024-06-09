@@ -59,7 +59,7 @@
 			class="form-control">
 			<option th:each="doctor: ${doctors}"
 				th:value="${doctor.id}"
-				th:text="|${doctor.names} ${doctor.lastnames}|"> </option>
+				th:text="|${doctor.getUser().names} ${doctor.getUser().lastnames}|"> </option>
 		      </select>
 		    </div>
 		    <div class="form-group mb-3">
@@ -71,7 +71,7 @@
 			class="form-control">
 			<option th:each="specialty: ${specialties}"
 				th:value="${specialty.id}"
-				th:text="${specialty.name}"> </option>
+				th:text="${specialty.realname}"> </option>
 		      </select>
 		    </div>
 		    <div class="form-group mb-3">

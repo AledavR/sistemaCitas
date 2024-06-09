@@ -20,17 +20,19 @@ public class Specialty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(nullable = false)
+    private String realname;
+    
     @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false, length = 1200)
+    private String description;
     
     @ManyToMany(mappedBy = "specialties")
     private List<Doctor> doctors = new ArrayList<>();
     
     @OneToMany(mappedBy = "specialty")
     private Set<MedicalService> medicalServices = new HashSet<>();
-    
-    @OneToOne(mappedBy = "specialty", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private SpecialtyInfo specialtyInfo;
     
 }

@@ -40,8 +40,8 @@
         </thead>
         <tbody>
             <tr th:each = "doctor : ${doctors}">
-                <td th:text = "${doctor.names}"></td>
-                <td th:text = "${doctor.lastnames}"></td>
+                <td th:text = "${doctor.getUser().names}"></td>
+                <td th:text = "${doctor.getUser().lastnames}"></td>
                 <td><a class="btn btn-info" th:href="@{/doctors/{id}(id = ${doctor.id})}">Ver Info</a></td>
             </tr>
         </tbody>

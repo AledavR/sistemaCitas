@@ -1,58 +1,51 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
-import unmsm.hospital.sistemaCitas.entity.Doctor;
-import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
-import unmsm.hospital.sistemaCitas.entity.Specialty;
-import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
-import unmsm.hospital.sistemaCitas.repository.DoctorDirectoryRepository;
-import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
-import unmsm.hospital.sistemaCitas.dto.DoctorDto;
-import unmsm.hospital.sistemaCitas.service.DoctorService;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import unmsm.hospital.sistemaCitas.entity.Doctor;
+import unmsm.hospital.sistemaCitas.entity.Specialty;
+import unmsm.hospital.sistemaCitas.entity.User;
+import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
+import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
+import unmsm.hospital.sistemaCitas.repository.UserRepository;
+import unmsm.hospital.sistemaCitas.service.DoctorService;
 
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepository doctorRepository;
-    private final DoctorDirectoryRepository doctorDirectoryRepository;
     private final SpecialtyRepository specialtyRepository;
+    private final UserRepository userRepository;
 
     public DoctorServiceImpl
         (DoctorRepository doctorRepository,
-         DoctorDirectoryRepository doctorDirectoryRepository,
-         SpecialtyRepository specialtyRepository) {
+         SpecialtyRepository specialtyRepository,
+         UserRepository userRepository) {
         
         this.doctorRepository = doctorRepository;
-        this.doctorDirectoryRepository = doctorDirectoryRepository;
         this.specialtyRepository = specialtyRepository;
+        this.userRepository = userRepository;
         
     }
 
     @Override
-    public void saveDoctor(DoctorDto doctorDto) {
-        
-        DoctorDirectory doctorDirectory = new DoctorDirectory();
-        doctorDirectory.setAddress(doctorDto.getAddress());
-        doctorDirectory.setPhone(doctorDto.getPhone());
+    public void saveDoctor(Long user_id, Long specialty_id) {
         
         Doctor doctor = new Doctor();
-        doctor.setNames(doctorDto.getFirstName());
-        doctor.setLastnames(doctorDto.getLastName());
-        
+        User user = userRepository.getReferenceById(user_id);
+        Specialty specialty = specialtyRepository.getReferenceById(specialty_id); 
+
         ArrayList<Specialty> specialties = new ArrayList<Specialty>();
-        specialties.add(specialtyRepository
-                        .findByName(doctorDto.getSpecialty()));
+        specialties.add(specialty);
         doctor.setSpecialties(specialties);
-        //ASOCIACION ENTRE DOCTORDIRECTORY Y DOCTOR
-        doctorDirectory.setDoctor(doctor);
-        // doctor.setDoctorDirectory(doctorDirectory);
-        
+
+        doctor.setUser(user);
         doctorRepository.save(doctor);
-        doctorDirectoryRepository.save(doctorDirectory);
+        
     }
     
     @Override
@@ -83,4 +76,16 @@ public class DoctorServiceImpl implements DoctorService {
         List<Specialty> specialties = doctor.getSpecialties();
         return specialties;
     }
+
+    @Override
+    public void associateUserWithDoctor(Long doctor_id, Long user_id){
+        Doctor doctor = doctorRepository.getReferenceById(doctor_id);
+        User user = userRepository.getReferenceById(user_id);
+
+        doctor.setUser(user);
+        doctorRepository.save(doctor);
+        
+        
+    }
+    
 }

@@ -1,9 +1,9 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
 import unmsm.hospital.sistemaCitas.entity.Patient;
+import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.service.PatientService;
-import unmsm.hospital.sistemaCitas.dto.PatientDto;
 
 import java.util.List;
 import jakarta.validation.Valid;
@@ -28,20 +28,23 @@ public class PatientController {
 
     @GetMapping("/admin/patient")
     public String showAddPatientForm(Model model) {
-        model.addAttribute("patient", new PatientDto());
+        model.addAttribute("email", new String());
         return "admin/patient";
     }
 
     @PostMapping("/admin/patient")
-    public String savePatient(@Valid @ModelAttribute("patient") PatientDto patientDto,
+    public String savePatient(@Valid @ModelAttribute("email") String email,
                               BindingResult result,
                               Model model) {
         
         if (result.hasErrors()) {
-            model.addAttribute("patient", patientDto);
+            model.addAttribute("patient", new String());
             return "admin/patient";
         }
-        patientService.savePatient(patientDto);
+        if (email.isEmpty()){ return "redirect:/admin/patient?error"; }
+        User patientUser = userService.findUserByEmail(email);
+        if (patientUser == null){ return "redirect:/admin/patient?error"; }
+        patientService.savePatient(patientUser.getId());
         return "redirect:/admin/patient?success";
     }
 

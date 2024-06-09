@@ -1,13 +1,11 @@
 package unmsm.hospital.sistemaCitas.controller.admin;
 
+import unmsm.hospital.sistemaCitas.entity.User;
 import unmsm.hospital.sistemaCitas.entity.Doctor;
-import unmsm.hospital.sistemaCitas.entity.DoctorDirectory;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.service.UserService;
-import unmsm.hospital.sistemaCitas.service.DoctorDirService;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
 import unmsm.hospital.sistemaCitas.service.SpecialtyService;
-import unmsm.hospital.sistemaCitas.dto.DoctorDto;
 
 import java.util.List;
 import java.util.Iterator;
@@ -28,38 +26,39 @@ public class DoctorController {
     private final UserService userService;
     private final SpecialtyService specialtyService;
     private final DoctorService doctorService;
-    private final DoctorDirService doctorDirService;
 
     public DoctorController(UserService userService,
                             SpecialtyService specialtyService,
-                            DoctorDirService doctorDirService,
                             DoctorService doctorService)
     {
         this.userService = userService;
         this.specialtyService = specialtyService;
-        this.doctorDirService = doctorDirService;
         this.doctorService = doctorService;
     }
 
     @GetMapping("/admin/doctor")
     public String showAddDoctorForm(Model model) {
         List<Specialty> specialties = specialtyService.listSpecialties();
-        model.addAttribute("doctor", new DoctorDto());
+        model.addAttribute("email", new String());
         model.addAttribute("specialties", specialties);
         return "admin/doctor";
     }
 
     @PostMapping("/admin/doctor")
-    public String saveDoctor(@Valid @ModelAttribute("doctor") DoctorDto doctorDto,
+    public String saveDoctor(@Valid @ModelAttribute("email") String email,
+                             @ModelAttribute("specialty") Long specialty_id,
                              BindingResult result,
                              Model model) {
         if (result.hasErrors()) {
             List<Specialty> specialties = specialtyService.listSpecialties();
-            model.addAttribute("doctor", doctorDto);
+            model.addAttribute("email", email);
             model.addAttribute("specialties", specialties);
             return "admin/doctor";
         }
-        doctorService.saveDoctor(doctorDto);
+        if (email.isEmpty()){ return "redirect:/admin/user?error"; }
+        User doctorUser = userService.findUserByEmail(email);
+        if (doctorUser == null){ return "redirect:/admin/user?error"; }
+        doctorService.saveDoctor(doctorUser.getId(), specialty_id);
         return "redirect:/admin/doctor?success";
     }
 
@@ -69,14 +68,13 @@ public class DoctorController {
         List<Specialty> specialties = specialtyService.listSpecialties();
         model.addAttribute("doctors", doctors);
         model.addAttribute("specialties", specialties);
-        model.addAttribute("doctor", new DoctorDto());
+        // model.addAttribute("doctor", new Long());
         return "admin/doctor/specialty";
     }
 
     @PostMapping("/admin/doctor/specialty")
     public String saveDoctorSpecialties(@ModelAttribute("doctor") Long doctor_id,
                                         @ModelAttribute("specialty") Long specialty_id,
-                                        @ModelAttribute("doctordto") DoctorDto doctorDto,
                                         BindingResult result,
                                         Model model){
         
@@ -89,8 +87,7 @@ public class DoctorController {
             {
                 if (oldSpecialtiesIt.next().getId() == specialty_id) {
                     specialtyFound = true;
-                    result.rejectValue("specialty", null,
-                                       "El doctor ya tiene asignada esa especialidad");
+                    result.reject("specialty");
                 }
             }
         
@@ -116,13 +113,11 @@ public class DoctorController {
     
     @GetMapping("/doctors/{id}")
     public String viewDoctor(@PathVariable Long id, Model model) {
-        Doctor doctor = doctorService.findDoctorById(id);
-        DoctorDirectory doctorDirectory = doctorDirService.findDoctorDirById(id);
-        if (doctor == null) {
+        User user = doctorService.findDoctorById(id).getUser();
+        if (user == null) {
             return "error-view";
         }
-        model.addAttribute("doctor", doctor);
-        model.addAttribute("directory", doctorDirectory);
+        model.addAttribute("user", user);
         return "doctor-view";
     }
     

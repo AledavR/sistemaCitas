@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       >
   <head>
 
@@ -52,17 +52,17 @@
           <div class="col-md-6">
             <div class="icon_main">
               <div class="icon_7"><img src="../static/images/icon-7.png" th:src="@{images/icon-7.png}"
-></div>
+                                       ></div>
               <h4 class="diabetes_text">Solicita una cita ahora mismo </h4>
             </div>
             <div class="icon_main">
               <div class="icon_7"><img src="../static/images/icon-5.png" th:src="@{images/icon-5.png}"
-></div>
+                                       ></div>
               <h4 class="diabetes_text">Especialistas en el campo de la medicina</h4>
             </div>
             <div class="icon_main">
               <div class="icon_7"><img src="../static/images/icon-6.png" th:src="@{images/icon-6.png}"
-></div>
+                                       ></div>
               <h4 class="diabetes_text">Laboratorios y equipo moderno</h4>
             </div>
           </div>
@@ -76,32 +76,59 @@
 		th:object="${user}"
 		>
 		<div class="form-group mb-3">
-		  <label class="form-label">Nombre</label>
+		  <label class="form-label">Nombres</label>
 		  <input
                     class="form-control"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="Ingrese su nombre"
-                    th:field="*{firstName}"
+                    id="names"
+                    name="names"
+                    placeholder="Ingrese sus nombres"
+                    th:field="*{names}"
                     type="text"
 		    />
-		  <p th:errors = "*{firstName}" class="text-danger"
-		     th:if="${#fields.hasErrors('firstName')}"></p>
+		  <p th:errors = "*{names}" class="text-danger"
+		     th:if="${#fields.hasErrors('names')}"></p>
 		</div>
 
 		<div class="form-group mb-3">
-		  <label class="form-label">Apellido</label>
+		  <label class="form-label">Apellidos</label>
 		  <input
                     class="form-control"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Ingrese su apellido"
-                    th:field="*{lastName}"
+                    id="lastnames"
+                    name="lastnames"
+                    placeholder="Ingrese sus apellidos"
+                    th:field="*{lastnames}"
                     type="text"
 		    />
-		  <p th:errors = "*{lastName}" class="text-danger"
-                     th:if="${#fields.hasErrors('lastName')}"></p>
+		  <p th:errors = "*{lastnames}" class="text-danger"
+                     th:if="${#fields.hasErrors('lastnames')}"></p>
 		</div>
+
+                <div class="form-group mb-3">
+		  <label class="form-label">Telefono</label>
+		  <input
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="Ingrese su telefono"
+                    th:field="*{phone}"
+                    type="text"
+		    />
+		  <p th:errors = "*{phone}" class="text-danger"
+                     th:if="${#fields.hasErrors('phone')}"></p>
+		</div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Fecha de nacimiento</label>
+                  <input class="form-control"
+                         type="date"
+                         id="start"
+                         name="trip-start"
+                         th:field="*{birthday}"
+                         value="2024-06-06"
+                         min="1900-01-01"/>
+                  <p th:errors = "*{birthday}" class="text-danger"
+                     th:if="${#fields.hasErrors('birthday')}"></p>
+                </div>
 
 		<div class="form-group mb-3">
 		  <label class="form-label">Correo</label>
