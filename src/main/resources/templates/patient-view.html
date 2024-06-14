@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <a class="navbar-brand" th:href="@{/index}">Información</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,27 +28,27 @@
 </nav>
 <div class="container">
     <div class="row col-md-10">
-        <h2>Lista de pacientes registrados</h2>
+        <h2>Información paciente</h2>
     </div>
-    
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Info</th>
-                <th>Actualizar</th>
+                <th>Correo</th>
+                <th>Telefono</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each = "patient : ${patients}">
-                <td th:text = "${patient.getUser().names}"></td>
-                <td th:text = "${patient.getUser().lastnames}"></td>
-                <td><a class="btn btn-info" th:href="@{/patients/{id}(id = ${patient.id})}">Ver Info</a></td>
-                <td><a class="btn btn-info" th:href="@{/patients/{id}(id = ${patient.id})}">Actualizar</a></td> 
+            <tr>
+                <td th:text = "${user.names}"></td>
+                <td th:text = "${user.lastnames}"></td>
+                <td th:text = "${user.email}"></td>
+                <td th:text = "${user.phone}"></td>
             </tr>
         </tbody>
     </table>
 </div>
+<div> <p th.text = ${patient.names}> </p> </div>
 </body>
 </html>

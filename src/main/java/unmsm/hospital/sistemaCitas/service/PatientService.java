@@ -10,5 +10,9 @@ public interface PatientService {
 
     List<Patient> listPatients();
     
+    Patient findPatientById(Long id);
+    
+    void updatePatient(Patient patient);
+    
 }
 
