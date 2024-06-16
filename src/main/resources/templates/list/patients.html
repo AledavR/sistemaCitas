@@ -41,11 +41,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each = "patient : ${patients}">
+            <tr th:each = "patient : ${patients}"> 
                 <td th:text = "${patient.getUser().names}"></td>
                 <td th:text = "${patient.getUser().lastnames}"></td>
                 <td><a class="btn btn-info" th:href="@{/patients/{id}(id = ${patient.id})}">Ver Info</a></td>
-                <td><a class="btn btn-info" th:href="@{/patients/{id}(id = ${patient.id})}">Actualizar</a></td> 
+                <td><a class="btn btn-info" th:href="@{/patientUpdate?id={id}(id=${patient.id})}">Actualizar</a></td> 
             </tr>
         </tbody>
     </table>

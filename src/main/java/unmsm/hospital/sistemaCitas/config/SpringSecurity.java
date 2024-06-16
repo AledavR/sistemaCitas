@@ -20,25 +20,27 @@ public class SpringSecurity {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
-                                .requestMatchers("/images/**").permitAll()
-                                .requestMatchers("/css/**").permitAll()
-                                .requestMatchers("/specialties").permitAll()
-                                .requestMatchers("/specialties/**").permitAll()
-                                .requestMatchers("/specialty-view").permitAll()
-                                .requestMatchers("/doctors/**").permitAll()
-                                .requestMatchers("/list/**").hasRole("ADMIN")
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/patient").hasRole("ADMIN")
+                .authorizeHttpRequests((authorize)
+                        -> authorize.requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/index").permitAll()
+                        .requestMatchers("/images/**").permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/specialties").permitAll()
+                        .requestMatchers("/specialties/**").permitAll()
+                        .requestMatchers("/specialty-view").permitAll()
+                        .requestMatchers("/doctors/**").permitAll()
+                        .requestMatchers("/patients/**").permitAll()
+                        .requestMatchers("/patientUpdate/**").permitAll()//porsiaca
+                        .requestMatchers("/list/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/patient").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
@@ -56,7 +58,7 @@ public class SpringSecurity {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder());
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 }
