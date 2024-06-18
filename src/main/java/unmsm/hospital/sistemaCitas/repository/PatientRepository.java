@@ -23,4 +23,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     
+    /**
+     * Este metodo verifica si existe un usuario en la base de
+     * datos usando su id. 
+     * No existe metodo propio de JPA que use boolean. 
+     * Ver JpaRepository 
+     *
+     * @since 2024-06-18
+     */
+    boolean existsByUserId(Long userId); //vease en PatientServiceImpl-->patientController
+    
 }

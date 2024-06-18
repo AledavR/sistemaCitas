@@ -38,6 +38,19 @@
             <label for="lastnames" class="form-label">Apellidos</label>
             <input type="text" class="form-control" id="lastnames" th:field="*{lastnames}" placeholder="Ingrese apellidos">
         </div>
+        <div class="form-group mb-3">
+		  <label class="control-label"></label>
+		  <input type="text"
+			 id="na" 
+			 name="email"
+			 th:value="${email}" 
+			 class="form-control"
+			 placeholder="Ingrese correo" />
+		</div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="phone" th:field="*{phone}" placeholder="Ingrese teléfono">
+        </div>
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>
 </div>

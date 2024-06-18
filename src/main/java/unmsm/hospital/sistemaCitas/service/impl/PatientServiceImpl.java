@@ -29,8 +29,14 @@ public class PatientServiceImpl implements PatientService {
         User user = userRepository.getReferenceById(user_id);
 
         patient.setUser(user);
-        patientRepository.save(patient);
+        patientRepository.save(patient);//ver PatientRepostory, dónde está el save?
 
+    }
+    
+    @Override
+    public boolean patientExists(Long userId) { //verificamos si ya existe el paciente 
+                                                //podría usar algo semejante a savePatient?
+        return patientRepository.existsByUserId(userId);
     }
 
     @Override

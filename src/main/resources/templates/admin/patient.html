@@ -1,71 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Sistema Administrativo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/admin}">Sistema Administrativo</a>
+    <style>
+        .alert {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const success = urlParams.get('success');
+            
+            if (error === 'empty') {
+                document.getElementById('empty-error').style.display = 'block';
+            } else if (error === 'notfound') {
+                document.getElementById('notfound-error').style.display = 'block';
+            } else if (error === 'exists') {
+                document.getElementById('exists-error').style.display = 'block';
+            } else if (error === 'invalid') {
+                document.getElementById('invalid-error').style.display = 'block';
+            } else if (success) {
+                document.getElementById('success-message').style.display = 'block';
+            }
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/admin">Sistema Administrativo</a>
         <button class="navbar-toggler"
-		type="button"
-		data-bs-toggle="collapse"
-		data-bs-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent"
-		aria-expanded="false"
-		aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">Agregar Paciente</li>
-          </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">Agregar Paciente</li>
+            </ul>
         </div>
-      </div>
-    </nav> 
-    <br /><br />
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div th:if="${param.error}">
-            <div class="alert alert-danger">No existe un usuario con ese correo</div>
-          </div>
-
-          <div th:if="${param.success}">
-            <div class="alert alert-success">Se añadio al paciente correctamente</div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h2 class="text-center">Agregar Paciente</h2>
-            </div>
-	    <div class="card-body">
-	      <form method="post"
-		    role="form"
-		    th:action="@{/admin/patient}"
-		    class="form-horizontal">
-		<div class="form-group mb-3">
-		  <label class="control-label"></label>
-		  <input type="text"
-			 id="na" 
-			 name="email"
-			 th:value="${email}" 
-			 class="form-control"
-			 placeholder="Ingrese el correo del paciente" />
-		</div>
-		<div class="form-group mb-3">
-		  <button type="submit" class="btn btn-primary">Enviar</button>
-		</div>
-	      </form>
-	    </div>
-	  </div>
-	</div>
-      </div>
     </div>
-  </body>
+</nav>
+<br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div id="empty-error" class="alert alert-danger">
+                El campo de correo no puede estar vacío
+            </div>
+
+            <div id="notfound-error" class="alert alert-danger">
+                No existe un usuario con ese correo
+            </div>
+
+            <div id="exists-error" class="alert alert-danger">
+                Ya existe un paciente con ese correo
+            </div>
+
+            <div id="invalid-error" class="alert alert-danger">
+                Formato de correo inválido. Ingrese un correo electrónico válido.
+            </div>
+
+            <div id="success-message" class="alert alert-success">
+                Se añadió al paciente correctamente
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Agregar Paciente</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post"
+                          role="form"
+                          action="/admin/patient"
+                          class="form-horizontal">
+                        <div class="form-group mb-3">
+                            <label class="control-label">Correo</label>
+                            <input type="text"
+                                   id="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Ingrese el correo del paciente" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

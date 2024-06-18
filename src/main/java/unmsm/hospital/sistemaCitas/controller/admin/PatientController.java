@@ -7,6 +7,7 @@ import unmsm.hospital.sistemaCitas.service.PatientService;
 
 import java.util.List;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,24 +36,25 @@ public class PatientController {
     }
 
     @PostMapping("/admin/patient")
-    public String savePatient(@Valid @ModelAttribute("email") String email,
-            BindingResult result,
-            Model model) {
-
-        if (result.hasErrors()) {
-            model.addAttribute("patient", new String());
-            return "admin/patient";
-        }
+    public String savePatient(@RequestParam("email") @Email String email, Model model) {
         if (email.isEmpty()) {
-            return "redirect:/admin/patient?error";
+            return "redirect:/admin/patient?error=empty";
         }
+        if (!email.contains("@") || !email.contains(".")) {
+            return "redirect:/admin/patient?error=invalid"; // nueva validación para error de formato del email
+        }
+
         User patientUser = userService.findUserByEmail(email);
         if (patientUser == null) {
-            return "redirect:/admin/patient?error";
+            return "redirect:/admin/patient?error=notfound";
         }
+        /*
+        if (patientService.patientExists(patientUser.getId())) { //aún en revisión
+            return "redirect:/admin/patient?error=exists"; // nueva validación para correo ya existente
+        }*/
 
         patientService.savePatient(patientUser.getId());
-        return "redirect:/admin/patient?success";
+        return "redirect:/admin/patient?success=true";
     }
 
     @GetMapping("/list/patients")
@@ -83,28 +85,16 @@ public class PatientController {
         return "patientUpdate";
     }
 
-    /*
-     @PostMapping("/admin/patient")
-    public String updatePatient(@Valid @ModelAttribute("email") String email,
+    @PostMapping("/patientUpdate")
+    public String updatePatient(@Valid @ModelAttribute("patient") Patient patient,
+            @ModelAttribute("email") String email,
             BindingResult result,
             Model model) {
 
-        if (result.hasErrors()) {
-            model.addAttribute("patient", new String());
-            return "admin/patient";
-        }
-        if (email.isEmpty()) {
-            return "redirect:/admin/patient?error";
-        }
         User patientUser = userService.findUserByEmail(email);
-        if (patientUser == null) {
-            return "redirect:/admin/patient?error";
-        }
         patientService.savePatient(patientUser.getId());
         return "redirect:/admin/patient?success";
 
     }
-     */
-    
-    
+
 }

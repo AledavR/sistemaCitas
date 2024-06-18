@@ -39,7 +39,7 @@ public class SpringSecurity {
                         .requestMatchers("/patients/**").permitAll()
                         .requestMatchers("/patientUpdate/**").permitAll()//porsiaca
                         .requestMatchers("/list/**").hasRole("ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").permitAll()
                         .requestMatchers("/patient").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
