@@ -40,7 +40,9 @@ public class PatientController {
         if (email.isEmpty()) {
             return "redirect:/admin/patient?error=empty";
         }
-        if (!email.contains("@") || !email.contains(".")) {
+
+        if (!email.contains("@") || !email.contains("."))  { //(FALTA)falta cubrir caso de símbolos 
+                                                             //no correspondientes al formato del Correo
             return "redirect:/admin/patient?error=invalid"; // nueva validación para error de formato del email
         }
 
@@ -48,10 +50,10 @@ public class PatientController {
         if (patientUser == null) {
             return "redirect:/admin/patient?error=notfound";
         }
-        /*
+
         if (patientService.patientExists(patientUser.getId())) { //aún en revisión
             return "redirect:/admin/patient?error=exists"; // nueva validación para correo ya existente
-        }*/
+        }
 
         patientService.savePatient(patientUser.getId());
         return "redirect:/admin/patient?success=true";
