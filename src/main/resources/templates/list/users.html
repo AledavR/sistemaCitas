@@ -9,6 +9,26 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+
+          <style>
+            .custom-table {
+                border: 2px solid #007bff; /* Borde azul */
+                border-radius: 10px; /* Bordes redondeados */
+            }
+            .custom-table th, .custom-table td {
+                padding: 15px; /* Espaciado interno */
+                text-align: center; /* Centrar el texto */
+            }
+            .custom-table thead {
+                background-color: #6c757d; /* Color de fondo del encabezado */
+                color: white; /* Color del texto del encabezado */
+            }
+            .custom-table tbody tr:hover {
+                background-color: #f1f1f1; /* Color de fondo al pasar el cursor */
+            }
+        </style>
+
+          
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,8 +50,8 @@
     <div class="row col-md-10">
         <h2>List of Registered Users</h2>
     </div>
-     <table class="table table-bordered table-hover">
-        <thead class="table-dark">
+     <table class="table custom-table">
+        <thead>
             <tr>
                 <th>Nombres</th>
                 <th>Apellidos</th>
