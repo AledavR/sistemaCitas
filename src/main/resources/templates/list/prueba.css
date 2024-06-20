@@ -1,0 +1,9 @@
+.encabezado{
+
+    background-image:url(título.jpg) ;
+    background-position: center; 
+    background-repeat: no repeat ;
+    background-size: cover;
+
+    height: 200vh;
+}
