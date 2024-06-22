@@ -32,10 +32,10 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.save(patient);//ver PatientRepostory, dónde está el save?
 
     }
-    
+
     @Override
     public boolean patientExists(Long userId) { //verificamos si ya existe el paciente 
-                                                //podría usar algo semejante a savePatient?
+        //podría usar algo semejante a savePatient?
         return patientRepository.existsByUserId(userId);
     }
 
@@ -51,9 +51,21 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void updatePatient(Patient patient) {
-        patientRepository.save(patient);
-        }
+    public User updatePatient(User user) {
+        
+        // Obtener el usuario existente por su ID
+        User existingUser = userRepository.findById(user.getId()).orElse(null);
+
+        // Actualizar los campos necesarios
+        existingUser.setNames(user.getNames());
+        existingUser.setLastnames(user.getLastnames());
+        existingUser.setPhone(user.getPhone());
+
+        // Guardar los cambios en la base de datos
+        return userRepository.save(existingUser); /*No puedo usar el PatientRepository, no es mala idea
+                                                    un repositorio genérico que pueda manejar
+                                                    diferentes tipos de entidades como User,Long y Patient,Long
+                                                    a la vez. 
+                                                    */
     }
-
-
+}

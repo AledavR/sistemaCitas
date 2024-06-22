@@ -41,8 +41,8 @@ public class PatientController {
             return "redirect:/admin/patient?error=empty";
         }
 
-        if (!email.contains("@") || !email.contains("."))  { //(FALTA)falta cubrir caso de símbolos 
-                                                             //no correspondientes al formato del Correo
+        if (!email.contains("@") || !email.contains(".")) { //(FALTA)falta cubrir caso de símbolos 
+            //no correspondientes al formato del Correo
             return "redirect:/admin/patient?error=invalid"; // nueva validación para error de formato del email
         }
 
@@ -51,7 +51,7 @@ public class PatientController {
             return "redirect:/admin/patient?error=notfound";
         }
 
-        if (patientService.patientExists(patientUser.getId())) { //aún en revisión
+        if (patientService.patientExists(patientUser.getId())) {
             return "redirect:/admin/patient?error=exists"; // nueva validación para correo ya existente
         }
 
@@ -83,20 +83,24 @@ public class PatientController {
             model.addAttribute("error", true);
             return "patientUpdate";
         }
-        model.addAttribute("patient", patient);
+        model.addAttribute("user", patient);
         return "patientUpdate";
     }
 
     @PostMapping("/patientUpdate")
-    public String updatePatient(@Valid @ModelAttribute("patient") Patient patient,
-            @ModelAttribute("email") String email,
-            BindingResult result,
-            Model model) {
+    public String updatePatient(@ModelAttribute("user") User user,
+            BindingResult result, Model model) {
 
-        User patientUser = userService.findUserByEmail(email);
-        patientService.savePatient(patientUser.getId());
-        return "redirect:/admin/patient?success";
+        if (result.hasErrors()) {
+            // Manejar errores de validación si es necesario
+            return "patientUpdate"; // Vista para mostrar el formulario de actualización con errores
+        }
 
+        // Guardar los cambios en el servicio de usuarios
+        patientService.updatePatient(user);
+
+        return "redirect:/list/patients";
     }
 
+    // Otros métodos para manejar operaciones de creación, eliminación, etc.
 }

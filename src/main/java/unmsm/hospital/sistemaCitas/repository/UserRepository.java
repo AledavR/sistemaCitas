@@ -18,6 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     User findByEmail(String email);
     
+    
     // @Query("insert users_roles(user_id,role_id) values (?1,?2)")
     // void setRoleByEmail(Long user_id, Long role_id);
 	
