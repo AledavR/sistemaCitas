@@ -37,7 +37,7 @@ public class SpringSecurity {
                         .requestMatchers("/specialty-view").permitAll()
                         .requestMatchers("/doctors/**").permitAll()
                         .requestMatchers("/patients/**").permitAll()
-                        .requestMatchers("/patientUpdate/**").permitAll()//porsiaca
+                        .requestMatchers("/patientUpdate").permitAll()
                         .requestMatchers("/list/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").permitAll()
                         .requestMatchers("/patient").hasRole("ADMIN")

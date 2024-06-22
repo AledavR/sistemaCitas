@@ -31,36 +31,46 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html" th:href="@{index}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="specialties">Especialidades</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="medicine.html" th:href="@{medicine}">Personal</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="client.html" th:href="@{client}">Paciente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html" th:href="@{contact}">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Ingresar</a>
-            </li>
-	    <!-- Menu de admin temporal para agilizar pruebas -->
-            <li class="nav-item">
-              <a class="nav-link" href="admin">Admin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><img src="../static/images/search-icon.png" th:src="@{images/search-icon.png}"></a>
-            </li>
-          </ul>
-        </div>
+        <div class="header_section">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="logo">
+                  <a href="index.html" th:href="@{index}">
+                      <img src="../static/images/logoD.png" th:src="@{images/logoD.png}" width="90">
+                  </a>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="specialties">Especialidades</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="medicine.html" th:href="@{medicine}">Personal</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="client.html" th:href="@{client}">Paciente</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="contact.html" th:href="@{contact}">Servicios</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="login">Ingresar</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="admin">Admin</a>
+                      </li>
+                      <li class="nav-item active d-flex align-items-center">
+                          <a class="nav-link" href="index.html" th:href="@{index}">Usuario</a>
+                          <img src="../static/images/usuario.png" th:src="@{images/usuario.png}" class="usuario ml-2">
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
       </nav>
+
       <!-- header section end -->
       <!-- banner section start -->
       <div id="main_slider" class="carousel slide" data-ride="carousel">
@@ -150,7 +160,7 @@
                        alt="Avatar" class="image" style="width:100%">
                 </div>
                 <div class="middle">
-                  <div class="text"><img src="../static/images/img-r7.jpg" th:src="@{images/img-r7.jpg}"
+                  <div class="text"><img src="../static/images/icon-1.png" th:src="@{images/img-r7.jpg}"
                                          style="width: 40px;"></div>
                 </div>
               </div>
@@ -168,8 +178,6 @@
               </div>
             </div>
           </div>
-          <div class="getquote_bt_1"><a href="welcome.html" th:href="@{welcome}">Read More <span><img src="../static/images/right-arrow.png" th:src="@{images/right-arrow.png}"
-                                                                                                      ></span></a></div>
         </div>
       </div>
     </div>
@@ -178,37 +186,27 @@
     <!-- CHIARA - Queremos verte bien -->
     <div class="knowledge_section layout_padding">
       <div class="container">
-        <div class="knowledge_main">
-          <div class="left_main">
-            <h1 class="knowledge_taital">Queremos verte bien</h1>
-            <p class="knowledge_text"> Con más de 30 años de experiencia en el cuidado de la salud de<br>
-              millones de peruanos, en la Clínica San Pablo Surco trabajamos día a<br>
-              día para poder ofrecer el servicio de calidad y seguridad que tu<br>
-              familia merece.<br>
-              <br>
-
-              Actualmente, contamos con la acreditación de la Joint Commission<br>
-              International (JCI), institución internacional que mide los más altos<br>
-              estándares de atención, pasando a formar parte del selecto grupo de<br>
-              clínicas fuera de los Estados Unidos que poseen este<br>
-              reconocimiento.<br>
-              <br>
-
-              Con un staff de reconocidos médicos, en San Pablo Surco ofrecemos<br>
-              atención en todas las especialidades, avalados por equipos de última<br>
-              generación y la mejor infraestructura.<br>
-              
-            </p>
+          <div class="knowledge_main">
+              <div class="left_main">
+                  <h1 class="knowledge_taital">Queremos verte bien</h1>
+                  <p class="knowledge_text">
+                      Con más de 30 años de experiencia en el cuidado de la salud de millones de peruanos, en la Clínica San Pablo Surco trabajamos día a día para poder ofrecer el servicio de calidad y seguridad que tu familia merece.<br><br>
+                      Actualmente, contamos con la acreditación de la Joint Commission International (JCI), institución internacional que mide los más altos estándares de atención, pasando a formar parte del selecto grupo de clínicas fuera de los Estados Unidos que poseen este reconocimiento.<br><br>
+                      Con un staff de reconocidos médicos, en San Pablo Surco ofrecemos atención en todas las especialidades, avalados por equipos de última generación y la mejor infraestructura.
+                  </p>
+              </div>
+              <div class="right_main">
+                  <button id="playButton" class="play_icon">
+                      <img src="../static/images/play-icon.png" alt="Play Icon">
+                  </button>
+              </div>
           </div>
-          <div class="right_main">
-            <div class="play_icon"><a href="#"><img src="../static/images/play-icon.png" th:src="@{images/play-icon.png}"
-                                                    ></a></div>
-            <video src="../static/videos/Ralph corto.mp4" th:src="@{videos/Ralph corto.mp4}"
-                   controls width="800"></video>
+          <div class="video_container" id="videoContainer" style="display:none;">
+              <video src="../static/videos/Ralph corto.mp4" controls width="800"></video>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
+  <script src="script.js"></script>
     <!-- knowledge section end -->
 
     <!-- DIANA - ¿En que podemos ayudarte?  -->
@@ -228,28 +226,36 @@
             </div>
 
             <div class="col-lg-6 col-sm-6 mb-4">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}"
-                                         ></div>
-                <h4 class="daily_text">Conoce a los Médicos</h4>
-              </div>
-            </div>
+              <a href="doctor-view.html">
+                  <div class="box_main">
+                      <div class="icon_1"> 
+                          <img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}">
+                      </div>
+                      <h4 class="daily_text">Conoce a los Médicos</h4>
+                  </div>
+              </a>
+          </div>
 
             <div class="col-lg-6 col-sm-6 mb-4">
+              <a href="patient-view.html">
               <div class="box_main">
                 <div class="icon_1"><img src="../static/images/icon-4.png" th:src="@{images/icon-4.png}"
                                          ></div>
                 <h4 class="daily_text_1">Pacientes +</h4>
               </div>
+            </a>
             </div>
 
             <div class="col-lg-6 col-sm-6 mb-4">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                         ></div>
-                <h4 class="daily_text_1">Servicios +</h4>
-              </div>
-            </div>
+              <a href="contacto.html">
+                  <div class="box_main">
+                      <div class="icon_1"> 
+                          <img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}">
+                      </div>
+                      <h4 class="daily_text">Servicios + </h4>
+                  </div>
+              </a>
+          </div>
 
             
           </div>
@@ -274,10 +280,10 @@
                 </div>
                 <div class="client_right">
                   <h3 class="distracted_text">Estamos Listos para cuidarte</h3>
-                  <p class="lorem_text">
-                  </p>
                   <div class="quote_icon"><img src="../static/images/quote-icon.png" th:src="@{images/quote-icon.png}"
                                                ></div>
+                                               <p class="client_text">  
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
                 </div>
               </div>
             </div>
@@ -306,7 +312,7 @@
               <p class="client_text">Estamos cerca de ti y tu familia </p>
               <div class="client_section_2">
                 <div class="client_left">
-                  <div><img src="../static/images/img-r7.jpg" th:src="@{images/img-r7.jpg}"
+                  <img src="../static/images/img-r7.jpg" th:src="@{images/img-r7.jpg}"
                             class="img-r7"></div>
                 </div>
                 <div class="client_right">
@@ -333,33 +339,58 @@
     <div class="news_section layout_padding">
       <div class="container">
         <h1 class="health_taital">Nuestras Especialidades </h1>
-        <p class="health_text">enunciado</p>
-        <div class="news_section_2 layout_padding">
-          <div class="row">
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}"
-                                         ></div>
-                <h4 class="daily_text">.</h4>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main active">
-                <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-4.png" th:src="@{images/icon-4.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
-              </div>
-            </div>
+        <p class="health_text">Contamos con más de veinte especialidades médicas con los mejores en cada área.</p>
+        <div class="specialties_section">
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 1">
+              <p class="knowledge_text">Cardiología</p>
           </div>
-        </div>
-        <div class="getquote_bt"><a href="#">boton <span><img src="../static/images/right-arrow.png" th:src="@{images/right-arrow.png}"
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 2">
+              <p class="knowledge_text">Dermatología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 3">
+              <p class="knowledge_text">Ginecología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 4">
+              <p class="knowledge_text">Pediatría</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 5">
+              <p class="knowledge_text">Oftalmología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 6">
+              <p class="knowledge_text">Neurología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 7">
+              <p class="knowledge_text">Oncología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 8">
+              <p class="knowledge_text">Ortopedia</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 9">
+              <p class="knowledge_text">Psiquiatria</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 10">
+              <p class="knowledge_text">Radiología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 11">
+              <p class="knowledge_text">Reumatología</p>
+          </div>
+          <div class="specialty_item">
+              <img src="../static/images/signomedico.png" th:src="@{images/signomedico.png}" class = "signomedico" alt="Especialidad 12">
+              <p class="knowledge_text">Urología</p>
+          </div>
+      </div>
+        <div class="getquote_bt"><a href="specialty-view.html">Ver más <span><img src="../static/images/right-arrow.png" th:src="@{images/right-arrow.png}"
                                                               ></span></a></div>
       </div>
     </div>
@@ -369,34 +400,35 @@
     <div class="news_section layout_padding">
       <div class="container">
         <h1 class="health_taital">Noticias y Eventos </h1>
-        <p class="health_text">enunciado</p>
+        <p class="health_text">Mantente siempre al tanto de nuestras ultimas novedades.</p>
         <div class="news_section_2 layout_padding">
           <div class="row">
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}"
-                                         ></div>
-                <h4 class="daily_text">.</h4>
+            <div class="news-section">
+              <div class="news-item">
+                  <img src="https://pymstatic.com/12223/conversions/puede-psicologo-contar-a-otros-lo-que-explicas-small-16_9.jpg" alt="Noticia 1">
+                  <div class="news-content">
+                      <h2>Título de Noticia 1</h2>
+                      <p>Descripción breve de la noticia 1.</p>
+                  </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main active">
-                <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
+              <div class="news-item">
+                  <img src="https://portal.andina.pe/EDPfotografia3/Thumbnail/2021/11/10/000822672W.jpg" alt="Noticia 2">
+                  <div class="news-content">
+                      <h2>Título de Noticia 2</h2>
+                      <p>Descripción breve de la noticia 2.</p>
+                  </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-4.png" th:src="@{images/icon-4.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
+              <div class="news-item">
+                  <img src="https://www.udep.edu.pe/hoy/wp-content/uploads/sites/49/2024/03/Diseno-sin-titulo-44.jpg" alt="Noticia 3">
+                  <div class="news-content">
+                      <h2>Título de Noticia 3</h2>
+                      <p>Descripción breve de la noticia 3.</p>
+                  </div>
               </div>
-            </div>
+          </div>
+          <script src="script.js"></script>
           </div>
         </div>
-        <div class="getquote_bt"><a href="#">boton <span><img src="../static/images/right-arrow.png" th:src="@{images/right-arrow.png}"
-                                                              ></span></a></div>
       </div>
     </div>
     <!-- news section end -->
@@ -405,37 +437,26 @@
     <!-- CHIARA - Mapa -->
     <div class="news_section layout_padding">
       <div class="container">
-        <h1 class="health_taital">Mapa </h1>
-        <p class="health_text">enunciado</p>
-        <div class="news_section_2 layout_padding">
-          <div class="row">
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}"
-                                         ></div>
-                <h4 class="daily_text">.</h4>
+        <h1 class="health_taital">Encuentranos aquí </h1>
+        <div class="map_section layout_padding">
+          <div class="container">
+              <h2> </h2>
+              <div class="map_content">
+                  <div class="map_container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.820285482788!2d-77.08708721549658!3d-12.055883011580795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c947caa53b21%3A0x10d7ea0bbf73c525!2sCl%C3%ADnica%20Universitaria%20UNMSM!5e0!3m2!1ses!2spe!4v1718850955243!5m2!1ses!2spe" width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                  <div class="contact_info">
+                      <h3>Información de Contacto</h3>
+                      <p><strong>Dirección:</strong> Av. Jorge Basadre Grohmman, Lima, Perú</p>
+                      <p><strong>Teléfono:</strong> +51 555-5555</p>
+                      <p><strong>Horario de Atención:</strong></p>
+                      <p>Lunes a Viernes: 0:00 AM - 0:00 PM</p>
+                      <p>Sábados y Domingos: 0:00 AM - 0:00 PM</p>
+                  </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main active">
-                <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="box_main">
-                <div class="icon_1"><img src="../static/images/icon-4.png" th:src="@{images/icon-4.png}"
-                                         ></div>
-                <h4 class="daily_text_1">.</h4>
-              </div>
-            </div>
           </div>
-        </div>
-        <div class="getquote_bt"><a href="#">boton <span><img src="../static/images/right-arrow.png" th:src="@{images/right-arrow.png}"
-                                                              ></span></a></div>
       </div>
-    </div>
+      </div>
     <!-- news section end -->
 
     <!-- footer section start -->
