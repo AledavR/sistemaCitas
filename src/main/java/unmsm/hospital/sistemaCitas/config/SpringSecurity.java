@@ -37,10 +37,12 @@ public class SpringSecurity {
                         .requestMatchers("/specialty-view").permitAll()
                         .requestMatchers("/doctors/**").permitAll()
                         .requestMatchers("/patients/**").permitAll()
+                        .requestMatchers("/patients").permitAll()
                         .requestMatchers("/patientUpdate").permitAll()
-                        .requestMatchers("/list/**").hasRole("ADMIN")
+                        .requestMatchers("/list/**").permitAll()
                         .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/patient").hasRole("ADMIN")
+                        .requestMatchers("/patient").permitAll()
+                        .requestMatchers("/delete/**").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-    // Asegúrate de inyectar el UserService correctamente
+   
     private final PatientRepository patientRepository;
     private final UserRepository userRepository;
 
@@ -31,6 +31,19 @@ public class PatientServiceImpl implements PatientService {
         patient.setUser(user);
         patientRepository.save(patient);//ver PatientRepostory, dónde está el save?
 
+    }
+    
+    //Implementacion para filtrar pacientes
+    @Override
+    public List<Patient> findPatientByEmail(String email) {
+        List<Patient> patients = patientRepository.findByUserEmail(email);
+        return patients;
+    }
+    
+    //Implementacion para eliminar pacientes, mas no usuarios.
+    @Override
+    public void deletePatientById(Long id) {
+        patientRepository.deleteById(id);
     }
 
     @Override

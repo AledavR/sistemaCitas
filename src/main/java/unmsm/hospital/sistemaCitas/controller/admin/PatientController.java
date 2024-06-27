@@ -6,7 +6,6 @@ import unmsm.hospital.sistemaCitas.service.UserService;
 import unmsm.hospital.sistemaCitas.service.PatientService;
 
 import java.util.List;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,6 +99,31 @@ public class PatientController {
         patientService.updatePatient(user);
 
         return "redirect:/list/patients";
+    }
+
+    //método para filtrar al paciente
+    @GetMapping("/search")
+    public String searchPatientsByEmail(@RequestParam("email") String email, Model model) {
+        
+        //Añadir la lógica si es necesario y sí lo es
+        List<Patient> patients = patientService.findPatientByEmail(email);
+
+        //Añadiendo los pacientes encontrados al modelo
+        model.addAttribute("patient", patients);
+
+        // Devolviendo la vista
+        return "list/patients";
+    }
+
+    //Método para eliminar al paciente, mas no al usuario
+    @GetMapping("/delete/{id}")
+    public String deletePatient(@PathVariable("id") Long id, Model model) {
+        patientService.deletePatientById(id); // Elimina al paciente por su ID
+
+        List<Patient> patients = patientService.listPatients(); // Vuelve a cargar la lista de pacientes
+        model.addAttribute("patients", patients); // Agrega la lista actualizada al modelo
+        
+        return "redirect:/list/patients"; // Redirige de vuelta a la lista de pacientes
     }
 
     // Otros métodos para manejar operaciones de creación, eliminación, etc.

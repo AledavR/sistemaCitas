@@ -17,7 +17,8 @@ public interface PatientService {
     
     Patient findPatientById(Long id);
     
+    List<Patient> findPatientByEmail(String email);//Método para filtrar pacientes
     
-    
+    void deletePatientById(Long id);//Método para eliminar paciente
 }
 
