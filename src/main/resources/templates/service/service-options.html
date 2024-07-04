@@ -92,7 +92,7 @@
             <tr th:each = "specialty : ${specialties}">
                 <td ><a th:text = "${specialty.realname}" 
                     class="btn btn-info" 
-                    th:href="@{/saveService?specialty_id={id}(id = ${specialty.id})}">
+                    th:href="@{/service/saveService?specialty_id={id}(id = ${specialty.id})}">
                     </a>
                 </td>
             </tr>
