@@ -8,31 +8,76 @@
 	  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	  crossorigin="anonymous">
   </head>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet">
+          <link rel="stylesheet" href="prueba.css">
+          <style>
+              body {
+                  background-color: #CFE8FC; /* Fondo azul claro para la página web */
+              }
+              .custom-table {
+                  border: 15px solid #ffffff; /* Borde blanco */
+                  border-radius: 10px; /* Bordes redondeados */
+                  overflow: hidden;
+                  background-color: #F7FBFE; /* Color de fondo de la tabla (blanco) */
+              }
+              .custom-table th, .custom-table td {
+                  padding: 12px 15px; /* Espaciado interno */
+                  text-align: left; /* Alinear el texto a la izquierda */
+                  font-weight: bold;
+                  border-bottom: 5px solid #ffffff; /* Borde inferior blanco */
+              }
+              .custom-table thead {
+                  background-color: #4da6ee; /* Color de fondo del encabezado */
+                  color: white; /* Color del texto del encabezado */
+              }
+              .custom-table tbody tr:nth-child(even) {
+                  background-color: #F0FBFD; /* Color de fondo gris claro para filas pares */
+              }
+              .custom-table tbody tr:nth-child(odd) {
+                  background-color: #CFE8FC; /* Color de fondo celeste para filas impares */
+              }
+              .custom-table tbody tr:hover {
+                  background-color: #ffffff; /* Cambia el color de fondo al pasar el cursor a blanco */
+              }
+              .header-bottom {
+                  background-image: url('https://i.ibb.co/2ymC222/Dise-o-sin-t-tulo.jpg'); /* URL de la imagen de fondo */
+                  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+                  background-position: center; /* Centra la imagen */
+                  color: white; /* Color del texto */
+                  padding: 90px 0; /* Espaciado interno */
+                  margin-bottom: 50px; /* Margen inferior */
+                  position: relative; /* Para posicionamiento absoluto del título */
+                  text-align: center; /* Alinea el texto al centro */
+              }
+              .header-bottom h1 {
+                  font-family: 'open sans', sans-serif; 
+                  font-weight: 650; 
+                  font-size: 2.5em; /* Tamaño de fuente más grande */
+                  margin: 0; /* Sin margen */
+                  position: absolute; /* Posicionamiento absoluto */
+                  right: 20px; /* Alineación a la derecha */
+                  top: 50%; /* Centrado verticalmente */
+                  transform: translateY(-50%); /* Ajuste de centrado vertical */
+              }
+              .navbar-brand {
+                  color: #ffffff; /* Cambia el color del texto a blanco (#ffffff) */
+              }
+			  .card, .card-body {
+				background-color: #4da6ee;
+			  }
+			  .control-label {
+				color: #ffffff;
+				font-size: 1.5em;
+			  }
+
+			  .form-control {
+				background-color: #F7FBFE;
+			  }
+          </style>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-	<a class="navbar-brand"
-	   th:href="@{/admin}">Sistema Administrativo</a>
-	<button class="navbar-toggler"
-		type="button"
-		data-bs-toggle="collapse"
-		data-bs-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent"
-		aria-expanded="false"
-		aria-label="Toggle navigation">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	    <li class="nav-item">
-	      <a class="nav-link active"
-		 aria-current="page"
-		 th:href="@{/register}">Administrar permisos de usuario</a>
-	    </li>
-	  </ul>
+    <div class="header-bottom">
+		<h1>Administrar permisos de usuario</h1>
 	</div>
-      </div>
-    </nav>
     <br /><br />
     <div class="container">
       <div class="row">
@@ -45,10 +90,8 @@
           <div th:if="${param.success}">
             <div class="alert alert-success">Se añadieron los permisos correctamente</div>
           </div>
-          <div class="card">
-            <div class="card-header">
-	      <h2 class="text-center">Administrar permisos de usuario</h2>
-	    </div>
+    <div class="card">
+ 
 	    <div class="card-body">
 	      <form
 		method="post"
