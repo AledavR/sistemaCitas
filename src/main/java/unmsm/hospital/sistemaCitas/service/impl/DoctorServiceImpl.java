@@ -12,6 +12,7 @@ import unmsm.hospital.sistemaCitas.repository.DoctorRepository;
 import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
 import unmsm.hospital.sistemaCitas.repository.UserRepository;
 import unmsm.hospital.sistemaCitas.service.DoctorService;
+import unmsm.hospital.sistemaCitas.service.UserService;
 
 
 @Service
@@ -20,11 +21,14 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final SpecialtyRepository specialtyRepository;
     private final UserRepository userRepository;
+    private UserService userService;
 
     public DoctorServiceImpl
         (DoctorRepository doctorRepository,
          SpecialtyRepository specialtyRepository,
-         UserRepository userRepository) {
+         UserRepository userRepository,
+         UserService userService
+         ) {
         
         this.doctorRepository = doctorRepository;
         this.specialtyRepository = specialtyRepository;
@@ -44,6 +48,8 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setSpecialties(specialties);
 
         doctor.setUser(user);
+        
+        userService.changeUserRoleByEmail(user.getEmail(), "ROLE_DOCTOR");
         doctorRepository.save(doctor);
         
     }
