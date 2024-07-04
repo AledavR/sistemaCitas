@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
 
   <head>
     <!-- basic -->
@@ -14,11 +15,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- style css -->
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}">
-    <!-- Responsive-->
-    <link rel="stylesheet" href="../static/css/responsive.css" th:href="@{css/responsive.css}">
-    <!-- fevicon -->
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <link rel="stylesheet" th:href="@{../css/responsive.css}">
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
 
 
@@ -159,7 +157,7 @@
                 <a class="nav-link" href="client.html" th:href="@{client}" sec:authentication="name"></a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><img src="../static/images/search-icon.png" th:src="@{images/search-icon.png}"></a>
+              <a class="nav-link" href="#"><img th:src="@{../images/search-icon.png}"></a>
             </li>
           </ul>
         </div>
@@ -174,18 +172,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-sm-3 col1" style="background-color: #252525;">
-            <div class="contact_bt"><a href="#">USUARIOS</a></div>
-      
+            <div class="contact_bt"><a href="#">SERVICIOS MEDICOS</a></div>
           </div>
-          <div class="col-lg-3 col-sm-3 col2" style="background-color: #252525;">
-            <div class="contact_bt"><a href="#">ESPECIALIDADES</a></div>
-          </div>
-          <div class="col-lg-3 col-sm-3 col3" style="background-color: #252525;">
-            <div class="contact_bt"><a href="#">DOCTORES</a></div>
-          </div>
-          <div class="col-lg-3 col-sm-3 col4" style="background-color: #252525;">
-            <div class="contact_bt"><a href="#">PACIENTES</a></div>
-          </div>
+
       </div>
       </div>
     
@@ -199,89 +188,18 @@
       <div class="row">
         <div class="col-lg-3 col-sm-3 col1" style="background-color: #ffffff;">
           <ul>
-            <li><a class="nav-link" href="health.html" th:href="@{/admin/user}"><img th:src="@{images/img-aa.png}" src="../static/images/img-aa.png" width="17px" height="17px">Administrar<br> permisos</a></li>
+            <li><a class="nav-link" href="health.html" th:href="@{/service/service-options}"><img th:src="@{../images/img-aa.png}" width="17px" height="17px">solicitar<br> servicio</a></li>
             <p></p>
-            <li><a class="nav-link" href="health.html" th:href="@{/list/users}"><img th:src="@{images/img-lst.png}" src="../static/images/img-lst.png" width="17px" height="17px">Listar <br>usuarios</a></li>
+            <li><a class="nav-link" href="health.html" th:href="@{/service/patient-services/{patient}(patient = ${patient})}"><img th:src="@{../images/img-lst.png}" width="17px" height="17px">Listar <br>servicios</a></li>
             <p></p>
           </ul>
-        </div>
-        <div class="col-lg-3 col-sm-3 col2" style="background-color: #ffffff;">
-          <ul>
-            <li><a class="nav-link" href="health.html" th:href="@{/admin/specialty}"><img th:src="@{images/img-em.png}" src="../static/images/img-em.png" width="17px" height="17px">Agregar <br>especialidad medica</a></li>
-            <p></p>
-            <li><a class="nav-link" href="health.html" th:href="@{/specialties}"><img th:src="@{images/img-ez.png}" src="../static/images/img-ez.png" width="17px" height="17px">Listar <br>especialidades</a></li>
-            <p></p>
-           
-          </ul>
-        </div>
-        <div class="col-lg-3 col-sm-3 col3" style="background-color: #ffffff;">
-          <ul>
-            <li><a class="nav-link" href="health.html" th:href="@{/admin/doctor}"><img th:src="@{images/img-doc.png}" src="../static/images/img-doc.png" width="17px" height="17px">Agregar <br>doctor</a></li>
-            <p></p>
-            <li><a class="nav-link" href="health.html" th:href="@{/admin/doctor/specialty}"><img th:src="@{images/img-esp.png}" src="../static/images/img-esp.png" width="17px" height="17px">Agregar <br>especialidad a doctor</a></li>
-            <p></p>
-            <li><a class="nav-link" href="health.html" th:href="@{/list/doctors}"><img  th:src="@{images/img-md.png}" src="../static/images/img-md.png" width="17px" height="17px">Listar<br> doctores</a></li>
-            <p></p>
-            
-          </ul>
-        </div>
-        <div class="col-lg-3 col-sm-3 col4" style="background-color: #ffffff;">
-          <ul>
-            <li><a class="nav-link" href="health.html" th:href="@{/admin/patient}"><img  th:src="@{images/img-usuario.png}" src="../static/images/img-usuario.png" width="17px" height="17px">Agregar <br>paciente</a></li>
-            <p></p>
-            <li><a class="nav-link" href="health.html" th:href="@{/list/patients}"><img th:src="@{images/img-d.png}" src="../static/images/img-d.png" width="17px" height="17px">Listar <br>pacientes</a></li>
-            <p></p>
-            
-          </ul>
-
         </div>
       </div>
-     
     </div>
   </div>
 </div>
 
-<!--NUEVA SECCION-->
 
-<!--<div class="news_section layout_padding">
-  <div class="container">
-    
-    <div class="news_section_2 layout_padding">
-      <div class="row">
-        
-        <div class="col-lg-6 col-sm-6 mb-4">
-          <div class="box_main">
-            
-            <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                     ></div>
-            <h4 class="dai">Usuarios</h4>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 mb-4">
-          <div class="box_main">
-            <div class="icon_1"><img src="../static/images/icon-2.png" th:src="@{images/icon-2.png}"
-                                     ></div>
-            <h4 class="dai">Especialidades </h4>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 mb-4">
-          <div class="box_main">
-            <div class="icon_1"><img src="../static/images/icon-4.png" th:src="@{images/icon-4.png}"
-                                     ></div>
-            <h4 class="dai">Doctores</h4>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 mb-4">
-          <div class="box_main">
-            <div class="icon_1"><img src="../static/images/icon-3.png" th:src="@{images/icon-3.png}"
-                                     ></div>
-            <h4 class="dai">Pacientes</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
     <div class="copyright_section">
       <div class="container">
         <footer>  
@@ -314,13 +232,13 @@
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"></script>
-    <script src="../static/js/plugin.js"></script>
+    <script src="../../static/js/plugin.js"></script>
     <!-- sidebar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
             integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"></script>
-    <script src="../static/js/custom.js"></script>
+    <script src="../../static/js/custom.js"></script>
     <!-- javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
             integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="

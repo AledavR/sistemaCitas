@@ -70,5 +70,10 @@ public class MedicalServServiceImpl implements MedicalServService {
     public List<MedicalServiceType> listMedicalServiceTypes(){
         return medicalServiceTypeRepository.findAll();
     }
+
+    @Override
+    public List<MedicalService> listMedicalServicesByPatient(Patient patient){
+        return medicalServiceRepository.findByPatient(patient);
+    }
     
 }

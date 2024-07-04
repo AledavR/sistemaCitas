@@ -50,11 +50,11 @@
                       <li class="nav-item" sec:authorize = "isAnonymous()">
                         <a class="nav-link" th:href="@{login}" >Ingresar</a>
                     </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="contact.html" th:href="@{contact}">Servicios</a>
-                      </li>
                       <li class="nav-item"  sec:authorize = "hasRole('ROLE_ADMIN')">
                           <a class="nav-link" href="admin">Admin</a>
+                      </li>
+                      <li class="nav-item" sec:authorize = "hasRole('ROLE_PATIENT')">
+                        <a class="nav-link" th:href="@{service/service-menu}">Servicios</a>
                       </li>
                       <li class="nav-item active d-flex align-items-center" sec:authorize = "isAuthenticated()">
                           <a class="nav-link" href="index.html" th:href="@{index}"  sec:authentication="name">Usuario</a>
