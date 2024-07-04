@@ -84,8 +84,6 @@ public class DoctorServiceImpl implements DoctorService {
 
         doctor.setUser(user);
         doctorRepository.save(doctor);
-        
-        
     }
     
 }

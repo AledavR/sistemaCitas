@@ -30,6 +30,8 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize)
                         -> authorize.requestMatchers("/register/**").permitAll()
                         .requestMatchers("/index").permitAll()
+                        .requestMatchers("/service-options").permitAll()
+                        .requestMatchers("/saveService").permitAll()
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/specialties").permitAll()

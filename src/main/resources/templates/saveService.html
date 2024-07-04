@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Paciente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row col-md-10">
+        <h2>Solicitud de Servicio Medico</h2>
+    </div>
+    
+    <form th:action="@{/saveService}" th:object="${medicalService}" method="post">
+
+        <div class="form-group mb-3">
+            <label class="control-label">Especialidad:</label>
+            <select id="specialty" name="specialty" selected="selected" class="form-control" th:field="*{specialty_id}">
+                <option th:value="${specialty.id}" th:text="${specialty.realname}"> </option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="control-label">Doctor</label>
+            <select id="doctor" name="doctor" selected="selected" class="form-control" th:field="*{doctor_id}">
+                <option th:each="doctor: ${doctors}" th:value="${doctor.id}" th:text="${doctor.getUser().names}"> </option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="control-label">Tipo de Servicio</label>
+            <select id="type" name="type" selected="selected" class="form-control" th:field="*{type_id}">
+                <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.type}"> </option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Fecha de servicio</label>
+            <input class="form-control"
+                   type="date"
+                   id="start"
+                   th:field="*{service_date}"
+                   name="trip-start"
+                   value="2024-06-06"
+                   min="1900-01-01"/>
+          </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+</body>
+</html>

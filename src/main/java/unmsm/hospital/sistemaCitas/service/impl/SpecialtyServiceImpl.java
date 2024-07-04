@@ -1,5 +1,6 @@
 package unmsm.hospital.sistemaCitas.service.impl;
 
+import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 import unmsm.hospital.sistemaCitas.repository.SpecialtyRepository;
@@ -40,6 +41,16 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Override
     public Specialty findSpecialtyByName(String name){
         return specialtyRepository.findByName(name);
+    }
+
+    @Override
+    public Specialty findSpecialtyById(Long id){
+        return specialtyRepository.getReferenceById(id);
+    }
+
+    @Override
+    public List<Doctor> listDoctorsBySpecialtyId(Long id){
+        return specialtyRepository.getReferenceById(id).getDoctors();
     }
 
 }

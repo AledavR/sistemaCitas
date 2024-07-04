@@ -1,5 +1,6 @@
 package unmsm.hospital.sistemaCitas.service;
 
+import unmsm.hospital.sistemaCitas.entity.Doctor;
 import unmsm.hospital.sistemaCitas.entity.Specialty;
 import unmsm.hospital.sistemaCitas.dto.SpecialtyDto;
 
@@ -12,4 +13,8 @@ public interface SpecialtyService {
 	List<Specialty> listSpecialties();
 
 	Specialty findSpecialtyByName(String name);
+
+	Specialty findSpecialtyById(Long id);
+
+	List<Doctor> listDoctorsBySpecialtyId(Long id);
 }

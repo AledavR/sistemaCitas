@@ -158,11 +158,11 @@
             <li class="nav-item">
               <a class="nav-link" href="client.html" th:href="@{client}">Ingresar</a>
             </li>
-           
-              <div class="more_bt"><a href="#">Usuario</a></div> 
+              <li class="nav_item" sec:authorize = "isAuthenticated()">
+                <a class="nav-link" href="client.html" th:href="@{client}" sec:authentication="name"></a>
+              </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><img src="../static/images/search-icon.png" th:src="@{images/search-icon.png}"
-                                                ></a>
+              <a class="nav-link" href="#"><img src="../static/images/search-icon.png" th:src="@{images/search-icon.png}"></a>
             </li>
           </ul>
         </div>
